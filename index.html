@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora - Transforme dados em decisões</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Arquivo CSS Externo -->
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+                <i class="bi bi-layers-fill text-gradient fs-3"></i> Aurora
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav gap-3">
+                    <li class="nav-item"><a class="nav-link" href="#">Produto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Soluções</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Preços</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
+                </ul>
+            </div>
+            <div class="d-none d-lg-flex gap-2">
+                <a href="#" class="btn btn-outline-dark rounded-pill px-4">Login</a>
+                <a href="#lead-form" class="btn btn-dark-brand rounded-pill px-4">Comece agora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-5 overflow-hidden">
+        <div class="container py-5">
+            <div class="row align-items-center border-bottom pb-5">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <span class="badge bg-light text-primary mb-3 px-3 py-2 border rounded-pill">Novo recurso: IA Preditiva</span>
+                    <h1 class="mb-4">Transforme dados em decisões <span class="text-gradient">conscientes</span> sobre pessoas.</h1>
+                    <p class="lead text-muted mb-4 fs-6">A plataforma de gestão de pessoas que analisa dados reais do seu time para sugerir ações, melhorar o clima e reter talentos.</p>
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="#lead-form" class="btn btn-dark-brand rounded-pill px-4 py-3">Comece gratuitamente <i class="bi bi-arrow-right"></i></a>
+                        <a href="#lead-form" class="btn btn-outline-secondary rounded-pill px-4 py-3">Fale com vendas</a>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-muted small">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <span class="ms-2 fw-medium text-dark">4.9/5</span> baseado em 500+ avaliações
+                    </div>
+                </div>
+                <!-- Gráfico/Mockup Placeholder -->
+                <div class="col-lg-6 position-relative">
+                    <div class="card shadow-lg border-0 rounded-4 p-4">
+                        <div class="d-flex justify-content-between mb-4">
+                            <h6 class="fw-bold">Engajamento do Time (%)</h6>
+                            <span class="badge bg-success bg-opacity-10 text-success">+ 14%</span>
+                        </div>
+                        <div class="bg-light rounded-3 w-100 position-relative" style="height: 200px; background: linear-gradient(180deg, rgba(139,92,246,0.2) 0%, rgba(255,255,255,0) 100%); border-bottom: 2px solid #8B5CF6;">
+                            <!-- Espaço para o gráfico -->
+                        </div>
+                        <div class="row mt-4 text-center">
+                            <div class="col-4 border-end">
+                                <small class="text-muted d-block">Retenção</small>
+                                <strong class="fs-5 text-dark">94.8%</strong>
+                            </div>
+                            <div class="col-4 border-end">
+                                <small class="text-muted d-block">Burnout</small>
+                                <strong class="fs-5 text-danger">Baixo</strong>
+                            </div>
+                            <div class="col-4">
+                                <small class="text-muted d-block">eNPS</small>
+                                <strong class="fs-5 text-success">85.4</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container text-center mb-5">
+            <h2 class="fs-3">Uma nova forma de liderar pessoas</h2>
+            <p class="text-muted">Descubra como a Aurora ajuda sua empresa a reter talentos e engajar times com dados ao invés de achismos.</p>
+        </div>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                <!-- Feature 1 -->
+                <div class="col">
+                    <div class="feature-card p-4 h-100 bg-white">
+                        <div class="icon-box"><i class="bi bi-mic"></i></div>
+                        <h5 class="fw-bold fs-6">Escuta Contínua</h5>
+                        <p class="text-muted small mb-0">Pesquisas de clima pulsáteis para entender o sentimento real do seu time a qualquer momento.</p>
+                    </div>
+                </div>
+                <!-- Feature 2 -->
+                <div class="col">
+                    <div class="feature-card p-4 h-100 bg-white">
+                        <div class="icon-box"><i class="bi bi-diagram-3"></i></div>
+                        <h5 class="fw-bold fs-6">Avaliação de Desempenho</h5>
+                        <p class="text-muted small mb-0">Ciclos de avaliação completos (360º, 180º, autoavaliação) focados no desenvolvimento.</p>
+                    </div>
+                </div>
+                <!-- Feature 3 -->
+                <div class="col">
+                    <div class="feature-card p-4 h-100 bg-white">
+                        <div class="icon-box"><i class="bi bi-graph-up-arrow"></i></div>
+                        <h5 class="fw-bold fs-6">Gestão de Metas (OKRs)</h5>
+                        <p class="text-muted small mb-0">Alinhe toda a empresa conectando objetivos individuais aos resultados da companhia.</p>
+                    </div>
+                </div>
+                <!-- Feature 4 -->
+                <div class="col">
+                    <div class="feature-card p-4 h-100 bg-white">
+                        <div class="icon-box"><i class="bi bi-lightbulb"></i></div>
+                        <h5 class="fw-bold fs-6">Recomendações com IA</h5>
+                        <p class="text-muted small mb-0">Nossa inteligência artificial analisa os dados e sugere planos de ação focados em retenção.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 bg-dark-brand text-white text-center">
+        <div class="container py-4">
+            <h2 class="mb-2">Impacto real para sua empresa</h2>
+            <p class="text-white-50 mb-5">Números alcançados em média por clientes após 6 meses usando nossa plataforma.</p>
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <h2 class="display-5 fw-bold text-gradient">35%</h2>
+                    <p class="small text-white-50">Aumento em retenção</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="display-5 fw-bold text-gradient">50%</h2>
+                    <p class="small text-white-50">Menos tempo em gestão</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="display-5 fw-bold text-gradient">90%</h2>
+                    <p class="small text-white-50">Adesão às pesquisas</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="display-5 fw-bold text-gradient">ROI</h2>
+                    <p class="small text-white-50">Retorno comprovado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5">
+        <div class="container py-5 text-center">
+            <h2 class="mb-5">Empresas que confiam na Aurora</h2>
+            
+            <!-- Logos placeholders -->
+            <div class="d-flex justify-content-center gap-4 flex-wrap opacity-50 mb-5">
+                <span class="fs-4 fw-bold text-muted"><i class="bi bi-building"></i> TechCorp</span>
+                <span class="fs-4 fw-bold text-muted"><i class="bi bi-building"></i> InovTech</span>
+                <span class="fs-4 fw-bold text-muted"><i class="bi bi-building"></i> VarejoSA</span>
+                <span class="fs-4 fw-bold text-muted"><i class="bi bi-building"></i> StartUp</span>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4 text-start">
+                <div class="col">
+                    <div class="testimonial-card p-4 h-100 bg-white shadow-sm">
+                        <i class="bi bi-quote fs-1 text-primary opacity-25"></i>
+                        <p class="text-muted small">"A plataforma mudou nossa forma de ver o engajamento. Hoje antecipamos problemas antes que virem pedidos de demissão."</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <div class="bg-secondary rounded-circle me-3" style="width: 40px; height: 40px;"></div>
+                            <div>
+                                <h6 class="mb-0 fw-bold fs-6">Carlos Miranda</h6>
+                                <small class="text-muted">CHRO, TechCorp</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial-card p-4 h-100 bg-white shadow-sm">
+                        <i class="bi bi-quote fs-1 text-primary opacity-25"></i>
+                        <p class="text-muted small">"As recomendações de IA são um diferencial enorme. Poupou horas de análise do meu time de People Analytics."</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <div class="bg-secondary rounded-circle me-3" style="width: 40px; height: 40px;"></div>
+                            <div>
+                                <h6 class="mb-0 fw-bold fs-6">Mariana Costa</h6>
+                                <small class="text-muted">Diretora de RH, InovTech</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial-card p-4 h-100 bg-white shadow-sm">
+                        <i class="bi bi-quote fs-1 text-primary opacity-25"></i>
+                        <p class="text-muted small">"Finalmente conseguimos alinhar os OKRs de todos de forma transparente. A usabilidade é incrível."</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <div class="bg-secondary rounded-circle me-3" style="width: 40px; height: 40px;"></div>
+                            <div>
+                                <h6 class="mb-0 fw-bold fs-6">Renato Silva</h6>
+                                <small class="text-muted">CEO, VarejoSA</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2>Escolha o plano ideal para sua organização</h2>
+                <p class="text-muted">Planos flexíveis que crescem junto com o seu time.</p>
+            </div>
+            
+            <div class="row justify-content-center g-4">
+                <!-- Plano Essential -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card bg-white border h-100 shadow-sm">
+                        <h4 class="fw-bold">Plano Base</h4>
+                        <p class="text-muted small">Para pequenas e médias empresas</p>
+                        <h2 class="display-6 fw-bold mb-4">R$1.500<span class="fs-6 text-muted fw-normal">/mês</span></h2>
+                        <ul class="list-unstyled mb-5">
+                            <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-success me-2"></i> <span class="small">Pesquisas de clima ilimitadas</span></li>
+                            <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-success me-2"></i> <span class="small">Avaliação de desempenho</span></li>
+                            <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-success me-2"></i> <span class="small">Suporte por email e chat</span></li>
+                            <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-success me-2"></i> <span class="small">Dashboard para lideranças</span></li>
+                        </ul>
+                        <a href="#lead-form" class="btn btn-outline-dark w-100 rounded-pill py-2">Começar com Plano Base</a>
+                    </div>
+                </div>
+
+                <!-- Plano Enterprise -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card pricing-pro h-100 shadow-lg position-relative">
+                        <span class="badge bg-gradient btn-gradient position-absolute top-0 end-0 m-3">Mais popular</span>
+                        <h4 class="fw-bold text-white">Plano Avançado</h4>
+                        <p class="text-white-50 small">Para operações robustas com múltiplas áreas</p>
+                        <h2 class="display-6 fw-bold mb-4 text-white">Sob consulta</h2>
+                        <ul class="list-unstyled mb-5 text-white">
+                            <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-primary me-2"></i> <span class="small text-white">Tudo do plano Base</span></li>
+                            <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-primary me-2"></i> <span class="small text-white">Gestão de OKRs</span></li>
+                            <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-primary me-2"></i> <span class="small text-white">Recomendações com IA</span></li>
+                            <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-primary me-2"></i> <span class="small text-white">CSM Dedicado</span></li>
+                        </ul>
+                        <a href="#lead-form" class="btn btn-gradient w-100 rounded-pill py-2">Falar com especialista</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Capture Section -->
+    <section id="lead-form" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <span class="badge bg-light text-primary border rounded-pill mb-3">Fale com especialistas</span>
+                    <h2 class="fw-bold mb-4">Pronto para transformar sua gestão de pessoas?</h2>
+                    <p class="text-muted mb-4">Preencha o formulário ao lado e descubra como a Aurora pode ajudar a reduzir o turnover da sua empresa e aumentar a produtividade do time.</p>
+                    
+                    <div class="d-flex mb-3">
+                        <i class="bi bi-shield-check fs-4 text-success me-3"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Demonstração gratuita</h6>
+                            <p class="small text-muted">Veja a plataforma na prática com seus próprios dados de exemplo.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <i class="bi bi-headset fs-4 text-primary me-3"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Consultoria de RH</h6>
+                            <p class="small text-muted">Nossos especialistas analisam seus desafios atuais sem compromisso.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 offset-lg-1">
+                    <div class="form-container">
+                        <h4 class="fw-bold mb-4">Solicite uma demonstração</h4>
+                        
+                        <!-- FORMULÁRIO DE CAPTURA DE LEAD -->
+                        <form id="leadConverterForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-medium">Nome completo *</label>
+                                    <input type="text" class="form-control" id="leadName" required placeholder="João Silva">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-medium">E-mail corporativo *</label>
+                                    <input type="email" class="form-control" id="leadEmail" required placeholder="joao@empresa.com.br">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-medium">Cargo *</label>
+                                    <input type="text" class="form-control" id="leadRole" required placeholder="Gerente de RH">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-medium">Tamanho da empresa *</label>
+                                    <select class="form-select" id="leadCompanySize" required>
+                                        <option value="" disabled selected>Selecione...</option>
+                                        <option value="1-50">1 a 50 funcionários</option>
+                                        <option value="51-200">51 a 200 funcionários</option>
+                                        <option value="201-500">201 a 500 funcionários</option>
+                                        <option value="500+">Mais de 500 funcionários</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-medium">Como conheceu a Aurora?</label>
+                                    <select class="form-select" id="leadSource">
+                                        <option value="" disabled selected>Selecione uma opção...</option>
+                                        <option value="google">Google</option>
+                                        <option value="linkedin">LinkedIn</option>
+                                        <option value="indicacao">Indicação</option>
+                                        <option value="outros">Outros</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-dark-brand w-100 py-3 rounded-3" id="btnSubmitForm">
+                                        Quero falar com vendas
+                                    </button>
+                                </div>
+                                <div class="col-12 text-center mt-3">
+                                    <small class="text-muted">Seus dados estão seguros. Não enviamos spam.</small>
+                                </div>
+                            </div>
+                            
+                            <!-- Alerta de Sucesso -->
+                            <div id="successMessage" class="alert alert-success mt-3 d-none text-center" role="alert">
+                                <i class="bi bi-check-circle-fill me-2"></i> Solicitação enviada com sucesso! Entraremos em contato em breve.
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 bg-light">
+        <div class="container py-5" style="max-width: 800px;">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Perguntas Frequentes</h2>
+                <p class="text-muted">Tire suas dúvidas sobre a plataforma e implementação.</p>
+            </div>
+            
+            <div class="accordion" id="accordionFAQ">
+                <div class="accordion-item mb-3 border-0 rounded-3 shadow-sm overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Como é feita a integração com nosso ERP atual?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body text-muted small">
+                            A Aurora possui APIs nativas e integrações prontas com os principais sistemas de RH do mercado (Sênior, Totvs, ADP, etc.). O processo é feito de forma assistida pelo nosso time de implementação em até 15 dias.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3 border-0 rounded-3 shadow-sm overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            A plataforma atende LGPD?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body text-muted small">
+                            Sim, somos 100% aderentes à Lei Geral de Proteção de Dados.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3 border-0 rounded-3 shadow-sm overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Qual o tempo médio de implementação?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body text-muted small">
+                            Para o plano Base, a implementação costuma levar entre 2 e 3 semanas.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-brand text-white py-5">
+        <div class="container pt-4">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <a class="navbar-brand fw-bold d-flex align-items-center gap-2 text-white mb-3" href="#">
+                        <i class="bi bi-layers-fill text-gradient fs-3"></i> Aurora
+                    </a>
+                    <p class="text-white-50 small mb-4">Transformando a gestão de pessoas através de dados, inteligência artificial e processos humanos.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-linkedin fs-5"></i></a>
+                        <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-instagram fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="fw-bold mb-3">Produto</h6>
+                    <ul class="list-unstyled small text-white-50 lh-lg">
+                        <li><a href="#" class="text-white-50 text-decoration-none">Funcionalidades</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Preços</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Casos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="fw-bold mb-3">Empresa</h6>
+                    <ul class="list-unstyled small text-white-50 lh-lg">
+                        <li><a href="#" class="text-white-50 text-decoration-none">Sobre nós</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Carreiras</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="fw-bold mb-3">Fale conosco</h6>
+                    <ul class="list-unstyled small text-white-50 lh-lg">
+                        <li><i class="bi bi-envelope me-2"></i> contato@aurora-hr.com.br</li>
+                        <li><i class="bi bi-geo-alt me-2"></i> São Paulo, SP - Brasil</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-top border-secondary mt-5 pt-4 d-flex justify-content-between align-items-center text-white-50 small">
+                <p class="mb-0">&copy; 2026 Aurora. Todos os direitos reservados.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-white-50 text-decoration-none">Termos de uso</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script de Conversão de Lead -->
+    <script>
+        document.getElementById('leadConverterForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const btnSubmit = document.getElementById('btnSubmitForm');
+            const originalBtnText = btnSubmit.innerHTML;
+            btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
+            btnSubmit.disabled = true;
+
+            const leadData = {
+                nome: document.getElementById('leadName').value,
+                email: document.getElementById('leadEmail').value,
+                cargo: document.getElementById('leadRole').value,
+                tamanho_empresa: document.getElementById('leadCompanySize').value,
+                origem: document.getElementById('leadSource').value
+            };
+
+            setTimeout(() => {
+                console.log("Novo Lead Capturado:", leadData);
+
+                document.getElementById('successMessage').classList.remove('d-none');
+                document.getElementById('leadConverterForm').reset();
+                btnSubmit.innerHTML = originalBtnText;
+                btnSubmit.disabled = false;
+
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.add('d-none');
+                }, 5000);
+                
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

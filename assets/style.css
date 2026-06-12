@@ -1,0 +1,107 @@
+/* Estilos Globais */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+}
+
+/* Cores Customizadas e Gradientes */
+.text-gradient {
+    background: linear-gradient(90deg, #8B5CF6, #D946EF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-dark-brand {
+    background-color: #0F172A; /* Azul escuro do layout */
+}
+
+.btn-gradient {
+    background: linear-gradient(90deg, #8B5CF6, #D946EF);
+    color: white;
+    border: none;
+    transition: opacity 0.3s ease;
+}
+
+.btn-gradient:hover {
+    opacity: 0.9;
+    color: white;
+}
+
+.btn-dark-brand {
+    background-color: #0F172A;
+    color: white;
+}
+
+.btn-dark-brand:hover {
+    background-color: #1E293B;
+    color: white;
+}
+
+/* Estilos de Cartões (Features e Testemunhos) */
+.feature-card, .testimonial-card {
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover, .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background-color: #F3F4F6;
+    color: #8B5CF6;
+    margin-bottom: 1rem;
+}
+
+/* Seção de Preços (Pricing) */
+.pricing-card {
+    border-radius: 16px;
+    padding: 2.5rem;
+}
+
+.pricing-pro {
+    background-color: #0F172A;
+    color: white;
+}
+
+/* Container do Formulário de Captura */
+.form-container {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    padding: 2rem;
+}
+
+/* Sanfona / FAQ */
+.accordion-button:not(.collapsed) {
+    background-color: #F8FAFC;
+    color: #0F172A;
+    box-shadow: none;
+}
+
+/* Ajustes de Tipografia */
+h1 { 
+    font-weight: 700; 
+    font-size: 3.5rem; 
+    line-height: 1.1; 
+}
+
+h2 { 
+    font-weight: 700; 
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    h1 { 
+        font-size: 2.5rem; 
+    }
+}
