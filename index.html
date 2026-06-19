@@ -590,6 +590,8 @@
                       type="text"
                       class="form-control"
                       id="leadName"
+                      minlength="5"
+                      maxlength="50"
                       required
                       placeholder="João Silva"
                     />
@@ -626,6 +628,7 @@
                       type="email"
                       class="form-control"
                       id="leadEmail"
+                      maxlength="50"
                       required
                       placeholder="voce@empresa.com.br"
                     />
@@ -951,6 +954,10 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+
+    <!-- Máscara de telefone -->
+    <script src="https://unpkg.com/imask"></script>
+    <script src="assets/js/tel.mask.js"></script>
 
     <!-- Script de Conversão de Lead -->
     <script>
