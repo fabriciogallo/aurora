@@ -1,107 +1,427 @@
-/* Estilos Globais */
-body {
-    font-family: 'Inter', sans-serif;
-    color: #333;
+/* ==========================================================================
+   Aurora — Estilos Globais
+   Mobile-first / Bootstrap 5.3
+   ========================================================================== */
+
+:root {
+  --aurora-purple: #8b5cf6;
+  --aurora-pink: #d946ef;
+  --aurora-dark: #0f172a;
+  --aurora-dark-soft: #1e293b;
+  --aurora-gray-bg: #f8fafc;
+  --aurora-border: #e2e8f0;
 }
 
-/* Cores Customizadas e Gradientes */
+body {
+  font-family: "Outfit", sans-serif;
+  color: #333;
+  background-color: #fff;
+}
+
+/* ==========================================================================
+   Cores Customizadas e Gradientes
+   ========================================================================== */
+
 .text-gradient {
-    background: linear-gradient(90deg, #8B5CF6, #D946EF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  background: linear-gradient(90deg, var(--aurora-purple), var(--aurora-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-pink {
+  color: var(--aurora-pink) !important;
+}
+
+.brand-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
 }
 
 .bg-dark-brand {
-    background-color: #0F172A; /* Azul escuro do layout */
+  background-color: var(--aurora-dark);
 }
 
 .btn-gradient {
-    background: linear-gradient(90deg, #8B5CF6, #D946EF);
-    color: white;
-    border: none;
-    transition: opacity 0.3s ease;
+  background: linear-gradient(90deg, var(--aurora-purple), var(--aurora-pink));
+  color: #fff;
+  border: none;
+  transition: opacity 0.3s ease;
 }
 
 .btn-gradient:hover {
-    opacity: 0.9;
-    color: white;
+  opacity: 0.9;
+  color: #fff;
 }
 
 .btn-dark-brand {
-    background-color: #0F172A;
-    color: white;
+  background-color: var(--aurora-dark);
+  color: #fff;
+  border: 1px solid var(--aurora-dark);
 }
 
 .btn-dark-brand:hover {
-    background-color: #1E293B;
-    color: white;
+  background-color: var(--aurora-dark-soft);
+  color: #fff;
+  border-color: var(--aurora-dark-soft);
 }
 
-/* Estilos de Cartões (Features e Testemunhos) */
-.feature-card, .testimonial-card {
-    border: 1px solid #E2E8F0;
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+
+.navbar-brand i.bi-layers-fill {
+  background: linear-gradient(90deg, var(--aurora-purple), var(--aurora-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.feature-card:hover, .testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+.nav-link {
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.nav-link:hover {
+  color: var(--aurora-purple);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.hero-rating .bi-star-fill {
+  font-size: 0.85rem;
+}
+
+/* Mockup / Gráfico do Hero */
+.hero-chart-card {
+  border-radius: 20px;
+}
+
+.hero-chart-area {
+  height: 180px;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-chart-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.hero-stat-divider {
+  border-right: 1px solid var(--aurora-border);
+}
+
+@media (min-width: 768px) {
+  .hero-chart-area {
+    height: 220px;
+  }
+}
+
+/* ==========================================================================
+   Features Section
+   ========================================================================== */
+
+.feature-card {
+  border: 1px solid var(--aurora-border);
+  border-radius: 16px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
 }
 
 .icon-box {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    background-color: #F3F4F6;
-    color: #8B5CF6;
-    margin-bottom: 1rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 1rem;
 }
 
-/* Seção de Preços (Pricing) */
+.icon-box-blue {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.icon-box-orange {
+  background-color: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+}
+
+.icon-box-purple {
+  background-color: rgba(139, 92, 246, 0.1);
+  color: var(--aurora-purple);
+}
+
+.icon-box-pink {
+  background-color: rgba(217, 70, 239, 0.1);
+  color: var(--aurora-pink);
+}
+
+/* ==========================================================================
+   Stats Section (Impacto real)
+   ========================================================================== */
+
+.stat-number {
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .stat-number {
+    font-size: 3rem;
+  }
+}
+
+/* ==========================================================================
+   Empresas / Logos
+   ========================================================================== */
+
+.logo-placeholder {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.logo-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background-color: #cbd5e1;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   Testimonials
+   ========================================================================== */
+
+.testimonial-card {
+  border: 1px solid var(--aurora-border);
+  border-radius: 16px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c7d2fe, #fbcfe8);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Pilha de avatares de líderes no Hero */
+.avatar-stack-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: -8px;
+  border: 2px solid #fff;
+  background: linear-gradient(135deg, #c7d2fe, #fbcfe8);
+}
+
+.avatar-stack-img:first-child {
+  margin-left: 0;
+}
+
+/* ==========================================================================
+   Pricing Section
+   ========================================================================== */
+
 .pricing-card {
-    border-radius: 16px;
+  border-radius: 20px;
+  padding: 2rem;
+  background-color: #fff;
+  border: 1px solid var(--aurora-border);
+}
+
+@media (min-width: 768px) {
+  .pricing-card {
     padding: 2.5rem;
+  }
 }
 
 .pricing-pro {
-    background-color: #0F172A;
-    color: white;
+  background-color: var(--aurora-dark);
+  color: #fff;
+  border-radius: 20px;
+  padding: 2rem;
 }
 
-/* Container do Formulário de Captura */
+@media (min-width: 768px) {
+  .pricing-pro {
+    padding: 2.5rem;
+  }
+}
+
+.pricing-card ul li,
+.pricing-pro ul li {
+  align-items: flex-start;
+}
+
+/* ==========================================================================
+   Lead Capture Form
+   ========================================================================== */
+
 .form-container {
-    background-color: white;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    padding: 2rem;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+  padding: 1.75rem;
 }
 
-/* Sanfona / FAQ */
+@media (min-width: 768px) {
+  .form-container {
+    padding: 2.5rem;
+  }
+}
+
+.form-container .form-control,
+.form-container .form-select {
+  border-radius: 10px;
+  border: 1px solid var(--aurora-border);
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+.form-container .form-control:focus,
+.form-container .form-select:focus {
+  border-color: var(--aurora-purple);
+  box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.15);
+}
+
+.benefit-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   FAQ / Accordion
+   ========================================================================== */
+
+.accordion-item {
+  border: none;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+.accordion-button {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--aurora-dark);
+}
+
 .accordion-button:not(.collapsed) {
-    background-color: #F8FAFC;
-    color: #0F172A;
-    box-shadow: none;
+  background-color: var(--aurora-gray-bg);
+  color: var(--aurora-dark);
+  box-shadow: none;
 }
 
-/* Ajustes de Tipografia */
-h1 { 
-    font-weight: 700; 
-    font-size: 3.5rem; 
-    line-height: 1.1; 
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: var(--aurora-border);
 }
 
-h2 { 
-    font-weight: 700; 
+.accordion-body {
+  font-size: 0.9rem;
 }
 
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-    h1 { 
-        font-size: 2.5rem; 
-    }
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+footer a:hover {
+  color: #fff !important;
+  text-decoration: underline !important;
+}
+
+/* ==========================================================================
+   Tipografia
+   ========================================================================== */
+
+h1 {
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.lead {
+  font-size: 1rem;
+}
+
+/* Escala tipográfica mobile-first */
+@media (min-width: 576px) {
+  h1 {
+    font-size: 2.75rem;
+  }
+}
+
+@media (min-width: 992px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+  }
+}
+
+/* ==========================================================================
+   Utilidades de Seção
+   ========================================================================== */
+
+section {
+  scroll-margin-top: 80px;
+}
+
+.btn {
+  font-weight: 500;
 }
