@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurora — Clareza financeira guiada por IA</title>
+<meta name="description" content="A Aurora reúne seus investimentos, gastos e metas em um só lugar e mostra o próximo passo certo, sem jargão e sem planilha. Entre na lista de espera.">
+<meta property="og:title" content="Aurora — Clareza financeira guiada por IA">
+<meta property="og:description" content="Conecte suas contas, converse com a IA e receba um plano financeiro claro todo mês.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23E23D74'/%3E%3Cstop offset='1' stop-color='%237C5CFA'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='%231B1523'/%3E%3Ccircle cx='16' cy='16' r='9' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg-0:#FCFAFB;
+  --bg-1:#FFFFFF;
+  --bg-2:#F5EFF3;
+  --bg-3:#EFE6ED;
+  --bg-warm:#241B3A;
+  --border-1:#E7DEE9;
+  --border-2:#D8CCDC;
+  --text-1:#1B1523;
+  --text-2:#5B5363;
+  --text-3:#847B8C;
+  --teal:#E23D74;
+  --violet:#7C5CFA;
+  --pink:#F5A8C8;
+  --warn:#B4791F;
+  --error:#D93B3B;
+  --ease:cubic-bezier(0.32,0.72,0,1);
+
+  --sp-100:.5rem; --sp-200:1rem; --sp-300:1.5rem; --sp-400:2rem;
+  --sp-500:2.5rem; --sp-600:3rem; --sp-700:4rem; --sp-800:5rem; --sp-900:6rem;
+
+  --r-sm:.5rem; --r-md:.75rem; --r-lg:1rem; --r-xl:1.25rem;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+}
+body{
+  margin:0;
+  background:var(--bg-0);
+  color:var(--text-1);
+  font-family:'Manrope',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  font-size:1rem;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,p,figure{margin:0;}
+ul{margin:0;padding:0;list-style:none;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;}
+input{font-family:inherit;}
+.mono{font-family:'Geist Mono','JetBrains Mono',ui-monospace,monospace;}
+
+h1,h2,h3,h4{text-wrap:balance;}
+p{text-wrap:pretty;}
+
+.container{max-width:1200px;margin:0 auto;padding-inline:var(--sp-300);}
+@media(min-width:768px){.container{padding-inline:var(--sp-500);}}
+
+.skip-link{
+  position:absolute;left:-999px;top:0;background:var(--teal);color:#000;
+  padding:.75rem 1.25rem;border-radius:0 0 .5rem 0;z-index:200;font-weight:600;
+}
+.skip-link:focus{left:0;}
+
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px;}
+
+/* ============ TYPE SCALE ============ */
+.text-xs{font-size:.75rem;line-height:1rem;}
+.text-sm{font-size:.875rem;line-height:1.25rem;}
+.text-base{font-size:1rem;line-height:1.5rem;}
+.text-lg{font-size:1.125rem;line-height:1.75rem;}
+.text-xl{font-size:1.25rem;line-height:1.75rem;}
+.text-2xl{font-size:1.5rem;line-height:2rem;}
+.text-3xl{font-size:1.875rem;line-height:2.25rem;}
+.text-4xl{font-size:2.25rem;line-height:2.5rem;}
+.text-5xl{font-size:3rem;line-height:1;}
+.text-6xl{font-size:3.75rem;line-height:1;}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--teal);font-weight:600;
+}
+.eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);}
+
+.text-muted{color:var(--text-2);}
+.text-faint{color:var(--text-3);}
+
+/* ============ AURORA GLOW (signature element) ============ */
+.aurora-glow{
+  position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;
+}
+.aurora-glow span{
+  position:absolute;border-radius:50%;filter:blur(90px);opacity:.32;
+  animation:drift 22s ease-in-out infinite alternate;
+}
+.aurora-glow span:nth-child(1){width:520px;height:520px;background:var(--teal);top:-160px;left:-80px;animation-duration:26s;}
+.aurora-glow span:nth-child(2){width:460px;height:460px;background:var(--violet);top:-60px;right:-120px;animation-duration:30s;animation-delay:-6s;}
+.aurora-glow span:nth-child(3){width:380px;height:380px;background:var(--pink);bottom:-180px;left:35%;animation-duration:24s;animation-delay:-12s;opacity:.35;}
+@keyframes drift{
+  0%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(40px,30px) scale(1.08);}
+  100%{transform:translate(-30px,-20px) scale(0.96);}
+}
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal{
+  opacity:0;transform:translateY(64px);filter:blur(8px);
+  transition:opacity 900ms var(--ease),transform 900ms var(--ease),filter 900ms var(--ease);
+}
+.reveal.is-visible{opacity:1;transform:translateY(0);filter:blur(0);}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.75rem 1.5rem;border-radius:999px;border:1px solid transparent;
+  font-weight:600;font-size:.9375rem;white-space:nowrap;
+  transition:transform 400ms var(--ease),background 400ms var(--ease),box-shadow 400ms var(--ease),border-color 400ms var(--ease);
+}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--teal);color:#ffffff;}
+.btn-primary:hover{box-shadow:0 0 0 6px rgba(226,61,116,.18);transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(--text-1);border-color:var(--border-2);}
+.btn-ghost:hover{background:var(--bg-1);border-color:var(--border-2);}
+.btn-block{width:100%;}
+.btn[disabled]{opacity:.5;cursor:not-allowed;}
+.btn-sm{padding:.5rem 1rem;font-size:.8125rem;}
+
+/* ============ NAV (fluid island) ============ */
+.nav-wrap{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:center;padding-top:var(--sp-300);pointer-events:none;}
+.nav-pill{
+  pointer-events:auto;
+  display:flex;align-items:center;gap:var(--sp-400);
+  background:rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--border-1);border-radius:999px;
+  padding:.5rem .5rem .5rem 1.25rem;
+  width:max-content;max-width:calc(100vw - 2rem);
+  transition:background 400ms var(--ease),padding 400ms var(--ease);
+}
+.nav-logo{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1rem;letter-spacing:-.01em;}
+.nav-logo-mark{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--teal),var(--violet));flex-shrink:0;}
+.nav-links{display:none;align-items:center;gap:var(--sp-400);}
+.nav-links a{font-size:.875rem;color:var(--text-2);transition:color 300ms var(--ease);}
+.nav-links a:hover{color:var(--text-1);}
+@media(min-width:960px){.nav-links{display:flex;}}
+.nav-cta{display:none;}
+@media(min-width:960px){.nav-cta{display:inline-flex;}}
+
+.nav-burger{
+  display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:50%;background:var(--bg-2);border:1px solid var(--border-1);
+  position:relative;flex-shrink:0;
+}
+@media(min-width:960px){.nav-burger{display:none;}}
+.nav-burger span{
+  position:absolute;width:14px;height:1.5px;background:var(--text-1);border-radius:2px;
+  transition:transform 500ms var(--ease),opacity 300ms var(--ease),top 500ms var(--ease);
+}
+.nav-burger span:nth-child(1){top:14px;}
+.nav-burger span:nth-child(2){top:19px;}
+.nav-burger span:nth-child(3){top:24px;}
+.nav-burger.open span:nth-child(1){top:19px;transform:rotate(45deg);}
+.nav-burger.open span:nth-child(2){opacity:0;}
+.nav-burger.open span:nth-child(3){top:19px;transform:rotate(-45deg);}
+
+.mobile-menu{
+  position:fixed;inset:0;z-index:90;
+  background:rgba(255,255,255,.93);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--sp-500);
+  opacity:0;pointer-events:none;transition:opacity 500ms var(--ease);
+}
+.mobile-menu.open{opacity:1;pointer-events:auto;}
+.mobile-menu a{
+  font-size:1.5rem;font-weight:600;color:var(--text-1);
+  opacity:0;transform:translateY(48px);
+  transition:opacity 600ms var(--ease),transform 600ms var(--ease);
+}
+.mobile-menu.open a{opacity:1;transform:translateY(0);}
+.mobile-menu.open a:nth-child(1){transition-delay:100ms;}
+.mobile-menu.open a:nth-child(2){transition-delay:150ms;}
+.mobile-menu.open a:nth-child(3){transition-delay:200ms;}
+.mobile-menu.open a:nth-child(4){transition-delay:250ms;}
+.mobile-menu.open a:nth-child(5){transition-delay:300ms;}
+.mobile-menu.open a:nth-child(6){transition-delay:350ms;}
+
+/* ============ HERO ============ */
+.hero{position:relative;padding-top:calc(var(--sp-900) + 3rem);padding-bottom:var(--sp-800);overflow:hidden;}
+.hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--sp-400);}
+.hero-heading{
+  max-width:680px;
+  background:linear-gradient(90deg,var(--teal),var(--violet));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-weight:700;letter-spacing:-.02em;
+}
+.hero-sub{max-width:680px;color:var(--text-2);}
+.hero-actions{display:flex;flex-direction:column;gap:var(--sp-300);align-items:center;width:100%;max-width:460px;}
+.lead-form{display:flex;gap:.5rem;width:100%;flex-wrap:wrap;}
+.lead-input{
+  flex:1 1 200px;min-width:0;background:var(--bg-1);border:1px solid var(--border-1);color:var(--text-1);
+  padding:.75rem 1rem;border-radius:999px;font-size:.9375rem;
+  transition:border-color 300ms var(--ease),background 300ms var(--ease);
+}
+.lead-input::placeholder{color:var(--text-3);}
+.lead-input:focus{border-color:var(--teal);outline:none;}
+.lead-input.error{border-color:var(--error);}
+.field-msg{font-size:.75rem;color:var(--error);min-height:1rem;text-align:left;padding-left:1rem;}
+.hero-secondary{display:flex;gap:var(--sp-400);}
+.hero-badges{display:flex;flex-wrap:wrap;gap:var(--sp-300);justify-content:center;color:var(--text-3);font-size:.8125rem;}
+.hero-badges li{display:flex;align-items:center;gap:.4rem;}
+.hero-proof{display:flex;align-items:center;gap:.75rem;color:var(--text-3);font-size:.8125rem;}
+.avatar-stack{display:flex;}
+.avatar-stack span{
+  width:28px;height:28px;border-radius:50%;border:2px solid var(--bg-0);margin-left:-8px;
+  display:flex;align-items:center;justify-content:center;font-size:.6875rem;font-weight:700;color:#ffffff;
+}
+.avatar-stack span:first-child{margin-left:0;}
+
+.hero-visual{position:relative;z-index:1;margin-top:var(--sp-700);width:100%;max-width:1040px;}
+.dash-card{
+  background:var(--bg-1);border:1px solid var(--border-1);border-radius:var(--r-xl);
+  padding:var(--sp-400);box-shadow:0 30px 90px -40px rgba(27,21,35,.22);
+}
+.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-400);flex-wrap:wrap;gap:var(--sp-200);}
+.dash-dots{display:flex;gap:6px;}
+.dash-dots span{width:9px;height:9px;border-radius:50%;background:var(--bg-3);}
+.dash-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--sp-300);}
+@media(max-width:720px){.dash-grid{grid-template-columns:1fr;}}
+.dash-panel{background:var(--bg-2);border:1px solid var(--border-1);border-radius:var(--r-lg);padding:var(--sp-300);}
+.dash-panel h4{font-size:.8125rem;color:var(--text-2);font-weight:600;margin-bottom:.25rem;}
+.dash-number{font-size:1.875rem;font-weight:700;}
+.dash-chart{display:flex;align-items:flex-end;gap:4px;height:70px;margin-top:var(--sp-300);}
+.dash-chart span{flex:1;background:linear-gradient(180deg,var(--teal),rgba(226,61,116,.15));border-radius:3px 3px 0 0;}
+.dash-list li{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--border-1);font-size:.8125rem;}
+.dash-list li:last-child{border-bottom:none;}
+.pill-tag{font-size:.6875rem;padding:.15rem .5rem;border-radius:999px;font-weight:600;}
+.pill-up{background:rgba(226,61,116,.12);color:var(--teal);}
+.pill-down{background:rgba(180,121,31,.14);color:var(--warn);}
+
+/* ============ LOGO STRIP ============ */
+.logo-strip{padding-block:var(--sp-600);border-top:1px solid var(--border-1);border-bottom:1px solid var(--border-1);}
+.logo-strip-label{text-align:center;color:var(--text-3);font-size:.8125rem;margin-bottom:var(--sp-400);}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);}
+.marquee-track{display:flex;gap:var(--sp-800);width:max-content;animation:scroll-left 34s linear infinite;}
+@keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.logo-wordmark{font-weight:700;font-size:1.125rem;color:var(--text-3);letter-spacing:-.01em;white-space:nowrap;display:flex;align-items:center;gap:.4rem;}
+.logo-wordmark svg{opacity:.6;}
+
+/* ============ TAGLINE REVEAL ============ */
+.tagline-section{padding-block:var(--sp-900);}
+.tagline-text{
+  max-width:820px;margin:0 auto;text-align:center;font-weight:700;letter-spacing:-.02em;
+}
+.tagline-text .word{
+  display:inline-block;color:rgba(245,246,247,.28);
+  transition:color 700ms var(--ease);
+}
+.tagline-text .word.active{color:var(--text-1);}
+
+/* ============ SECTION GENERIC ============ */
+.section{padding-block:var(--sp-900);position:relative;}
+.section-head{max-width:640px;margin:0 auto var(--sp-700);text-align:center;display:flex;flex-direction:column;gap:var(--sp-200);align-items:center;}
+.section-head.left{align-items:flex-start;text-align:left;margin-inline:0;}
+
+/* ============ BENEFITS ============ */
+.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--sp-400);}
+.benefit-card{
+  background:var(--bg-1);border:1px solid var(--border-1);border-radius:var(--r-xl);
+  padding:var(--sp-400);display:flex;flex-direction:column;gap:var(--sp-300);
+  transition:transform 500ms var(--ease),border-color 500ms var(--ease),background 500ms var(--ease);
+}
+.benefit-card:hover{transform:translateY(-4px);border-color:var(--border-2);background:var(--bg-2);}
+.icon-tile{
+  width:44px;height:44px;border-radius:var(--r-md);
+  background:var(--bg-2);border:1px solid var(--border-1);
+  display:flex;align-items:center;justify-content:center;color:var(--teal);
+}
+.benefit-card h3{font-weight:600;}
+
+/* ============ SIMULATOR / CHAT ============ */
+.sim-wrap{display:grid;grid-template-columns:280px 1fr;gap:var(--sp-400);align-items:start;}
+@media(max-width:860px){.sim-wrap{grid-template-columns:1fr;}}
+.sim-prompts{display:flex;flex-direction:column;gap:var(--sp-200);}
+.prompt-chip{
+  text-align:left;background:var(--bg-1);border:1px solid var(--border-1);border-radius:var(--r-lg);
+  padding:var(--sp-300);font-size:.875rem;color:var(--text-2);
+  transition:border-color 300ms var(--ease),color 300ms var(--ease),background 300ms var(--ease);
+}
+.prompt-chip:hover,.prompt-chip:focus-visible{border-color:var(--teal);color:var(--text-1);background:var(--bg-2);}
+.chat-card{background:var(--bg-1);border:1px solid var(--border-1);border-radius:var(--r-xl);display:flex;flex-direction:column;overflow:hidden;height:560px;}
+.chat-head{display:flex;align-items:center;gap:.6rem;padding:var(--sp-300) var(--sp-400);border-bottom:1px solid var(--border-1);}
+.chat-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--violet));flex-shrink:0;}
+.chat-status{display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--text-3);}
+.chat-status span{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+.chat-body{flex:1;overflow-y:auto;padding:var(--sp-400);display:flex;flex-direction:column;gap:var(--sp-300);scroll-behavior:smooth;}
+.msg{max-width:82%;padding:.75rem 1rem;border-radius:var(--r-lg);font-size:.9375rem;line-height:1.55;}
+.msg-bot{align-self:flex-start;background:var(--bg-2);border:1px solid var(--border-1);border-bottom-left-radius:.25rem;}
+.msg-user{align-self:flex-end;background:var(--teal);color:#ffffff;border-bottom-right-radius:.25rem;font-weight:500;}
+.typing{align-self:flex-start;display:flex;gap:4px;background:var(--bg-2);border:1px solid var(--border-1);padding:.75rem 1rem;border-radius:var(--r-lg);border-bottom-left-radius:.25rem;}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--text-3);animation:blink 1.2s infinite ease-in-out;}
+.typing span:nth-child(2){animation-delay:.2s;}
+.typing span:nth-child(3){animation-delay:.4s;}
+@keyframes blink{0%,80%,100%{opacity:.2;}40%{opacity:1;}}
+.chat-lead{
+  margin:0 var(--sp-400) var(--sp-300);padding:var(--sp-300);border-radius:var(--r-lg);
+  background:var(--bg-2);border:1px solid var(--border-1);display:flex;flex-direction:column;gap:.6rem;
+  opacity:0;max-height:0;overflow:hidden;transition:opacity 500ms var(--ease),max-height 600ms var(--ease),margin 600ms var(--ease),padding 600ms var(--ease);
+}
+.chat-lead.show{opacity:1;max-height:240px;}
+.chat-input-row{display:flex;gap:.5rem;padding:var(--sp-300) var(--sp-400);border-top:1px solid var(--border-1);}
+.chat-input-row input{
+  flex:1;background:var(--bg-2);border:1px solid var(--border-1);color:var(--text-1);
+  padding:.7rem 1rem;border-radius:999px;font-size:.875rem;
+}
+.chat-input-row input:focus{outline:none;border-color:var(--teal);}
+.chat-send{width:42px;height:42px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;color:#ffffff;flex-shrink:0;transition:transform 300ms var(--ease);}
+.chat-send:hover{transform:scale(1.06);}
+.chat-disclaimer{text-align:center;font-size:.75rem;color:var(--text-3);margin-top:var(--sp-300);}
+
+/* ============ HOW IT WORKS ============ */
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-400);}
+@media(max-width:820px){.steps-grid{grid-template-columns:1fr;}}
+.step-card{background:var(--bg-1);border:1px solid var(--border-1);border-radius:var(--r-xl);padding:var(--sp-400);display:flex;flex-direction:column;gap:var(--sp-200);}
+.step-num{font-family:'Geist Mono',monospace;color:var(--violet);font-size:.875rem;}
+.demo-card{
+  margin-top:var(--sp-700);display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-500);align-items:center;
+  background:var(--bg-1);border:1px solid var(--border-1);border-radius:var(--r-xl);padding:var(--sp-500);
+}
+@media(max-width:860px){.demo-card{grid-template-columns:1fr;}}
+.demo-visual{
+  position:relative;aspect-ratio:4/3;border-radius:var(--r-lg);overflow:hidden;
+  background:var(--bg-2);border:1px solid var(--border-1);
+  display:flex;align-items:center;justify-content:center;
+}
+.play-btn{
+  width:64px;height:64px;border-radius:50%;background:rgba(245,246,247,.1);backdrop-filter:blur(6px);
+  border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;color:var(--text-1);
+  transition:transform 400ms var(--ease),background 400ms var(--ease);position:relative;z-index:1;
+}
+.play-btn:hover{transform:scale(1.08);background:rgba(226,61,116,.15);}
+.demo-form{display:flex;flex-direction:column;gap:var(--sp-200);}
+.form-row{display:flex;flex-direction:column;gap:.4rem;}
+.form-row label{font-size:.8125rem;color:var(--text-2);}
+.form-row input,.form-row select{
+  background:var(--bg-2);border:1px solid var(--border-1);color:var(--text-1);
+  padding:.7rem 1rem;border-radius:var(--r-md);font-size:.9375rem;
+}
+.form-row input:focus,.form-row select:focus{outline:none;border-color:var(--teal);}
+
+/* ============ PRICING ============ */
+.pricing-toggle{display:flex;align-items:center;justify-content:center;gap:var(--sp-300);margin-bottom:var(--sp-700);}
+.toggle-switch{
+  width:52px;height:28px;border-radius:999px;background:var(--bg-2);border:1px solid var(--border-1);
+  position:relative;transition:background 300ms var(--ease);
+}
+.toggle-switch::after{
+  content:'';position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:var(--text-1);
+  transition:transform 400ms var(--ease);
+}
+.toggle-switch.on{background:var(--teal);}
+.toggle-switch.on::after{transform:translateX(24px);background:#ffffff;}
+.save-badge{font-size:.75rem;font-weight:700;color:var(--teal);background:rgba(226,61,116,.12);padding:.2rem .6rem;border-radius:999px;}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-400);align-items:stretch;}
+@media(max-width:960px){.pricing-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto;}}
+.price-card{
+  background:var(--bg-1);border:1px solid var(--border-1);border-radius:var(--r-xl);
+  padding:var(--sp-500);display:flex;flex-direction:column;gap:var(--sp-400);position:relative;
+}
+.price-card.popular{border-color:var(--teal);background:var(--bg-2);}
+.popular-badge{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--teal);color:#ffffff;font-size:.75rem;font-weight:700;
+  padding:.3rem .9rem;border-radius:999px;
+}
+.price-value{display:flex;align-items:baseline;gap:.3rem;font-family:'Geist Mono',monospace;}
+.price-value .amount{font-size:2.5rem;font-weight:700;}
+.price-feats li{display:flex;align-items:flex-start;gap:.6rem;font-size:.875rem;color:var(--text-2);padding-block:.4rem;}
+.price-feats li svg{flex-shrink:0;margin-top:2px;color:var(--teal);}
+
+/* ============ FAQ ============ */
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:var(--sp-200);}
+.faq-item{background:var(--bg-1);border:1px solid var(--border-1);border-radius:var(--r-lg);overflow:hidden;}
+.faq-q{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:var(--sp-300);
+  padding:var(--sp-300) var(--sp-400);background:none;border:none;color:var(--text-1);text-align:left;font-weight:600;font-size:.9375rem;
+}
+.faq-q .chev{transition:transform 400ms var(--ease);flex-shrink:0;color:var(--text-3);}
+.faq-item.open .faq-q .chev{transform:rotate(180deg);color:var(--teal);}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows 500ms var(--ease);}
+.faq-item.open .faq-a{grid-template-rows:1fr;}
+.faq-a-inner{overflow:hidden;}
+.faq-a p{padding:0 var(--sp-400) var(--sp-400);color:var(--text-2);font-size:.9375rem;}
+
+/* ============ FINAL CTA ============ */
+.final-cta{
+  position:relative;overflow:hidden;background:var(--bg-warm);
+  border-radius:var(--r-xl);padding:var(--sp-800) var(--sp-400);text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:var(--sp-400);
+  margin-inline:var(--sp-300);
+}
+@media(min-width:768px){.final-cta{margin-inline:var(--sp-500);}}
+.final-cta h2{max-width:600px;}
+.final-cta h2,.final-cta>div>p{color:#ffffff;}
+.final-cta .text-muted{color:rgba(255,255,255,.72);}
+.final-cta .lead-input{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.28);color:#ffffff;}
+.final-cta .lead-input::placeholder{color:rgba(255,255,255,.55);}
+
+/* ============ FOOTER ============ */
+footer{padding-top:var(--sp-900);}
+.footer-grid{
+  display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:var(--sp-500);
+  padding-block:var(--sp-700);border-bottom:1px solid var(--border-1);
+}
+@media(max-width:760px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-brand p{max-width:280px;color:var(--text-2);margin-top:var(--sp-200);}
+.footer-col h5{font-size:.8125rem;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:var(--sp-300);}
+.footer-col ul{display:flex;flex-direction:column;gap:.65rem;}
+.footer-col a{font-size:.875rem;color:var(--text-2);transition:color 300ms var(--ease);}
+.footer-col a:hover{color:var(--text-1);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-block:var(--sp-400);flex-wrap:wrap;gap:var(--sp-200);color:var(--text-3);font-size:.8125rem;}
+.social-row{display:flex;gap:var(--sp-200);}
+.social-row a{width:34px;height:34px;border-radius:50%;background:var(--bg-1);border:1px solid var(--border-1);display:flex;align-items:center;justify-content:center;transition:background 300ms var(--ease),transform 300ms var(--ease);}
+.social-row a:hover{background:var(--bg-2);transform:translateY(-2px);}
+
+/* toast */
+#toast{
+  position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--bg-2);border:1px solid var(--border-2);color:var(--text-1);
+  padding:.85rem 1.4rem;border-radius:999px;font-size:.875rem;z-index:300;
+  opacity:0;pointer-events:none;transition:opacity 400ms var(--ease),transform 400ms var(--ease);
+  display:flex;align-items:center;gap:.5rem;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+#toast svg{color:var(--teal);flex-shrink:0;}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-300);}
+@media(max-width:600px){.grid-2{grid-template-columns:1fr;}}
+
+.section-eyebrow-wrap{display:flex;flex-direction:column;gap:var(--sp-200);align-items:center;text-align:center;}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+<!-- ============ NAV ============ -->
+<div class="nav-wrap">
+  <div class="nav-pill">
+    <a href="#top" class="nav-logo" aria-label="Aurora, página inicial">
+      <span class="nav-logo-mark" aria-hidden="true"></span> Aurora
+    </a>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#beneficios">Benefícios</a>
+      <a href="#simulador">Simulador</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#precos">Preços</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#hero-form" class="btn btn-primary btn-sm nav-cta">Começar agora</a>
+    <button class="nav-burger" id="burgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#beneficios">Benefícios</a>
+  <a href="#simulador">Simulador</a>
+  <a href="#como-funciona">Como funciona</a>
+  <a href="#precos">Preços</a>
+  <a href="#faq">FAQ</a>
+  <a href="#hero-form" class="btn btn-primary">Começar agora</a>
+</div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="aurora-glow" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="container hero-inner">
+    <p class="eyebrow">Inteligência financeira com IA</p>
+    <h1 class="hero-heading text-4xl" style="font-size:clamp(2.25rem,5vw,3.75rem);line-height:1.05;">
+      Decisões financeiras mais claras,<br>guiadas por inteligência artificial
+    </h1>
+    <p class="hero-sub text-lg">A Aurora reúne seus investimentos, gastos e metas em um só lugar e mostra exatamente o próximo passo. Sem jargão, sem planilha.</p>
+
+    <form class="hero-actions" id="hero-form" novalidate>
+      <div class="lead-form">
+        <label for="heroEmail" class="visually-hidden" style="position:absolute;left:-9999px;">Seu email</label>
+        <input class="lead-input" type="email" id="heroEmail" placeholder="Seu melhor email" autocomplete="email" required>
+        <button type="submit" class="btn btn-primary">Quero acesso antecipado</button>
+      </div>
+      <p class="field-msg" id="heroEmailMsg" role="alert"></p>
+      <div class="hero-secondary">
+        <a href="#demo" class="btn btn-ghost btn-sm">Ver demonstração</a>
+      </div>
+    </form>
+
+    <div class="hero-proof">
+      <div class="avatar-stack" aria-hidden="true">
+        <span style="background:var(--teal);">LM</span>
+        <span style="background:var(--violet);">RS</span>
+        <span style="background:var(--warn);">JA</span>
+      </div>
+      <span>Junte-se a 3.482 pessoas na lista de espera</span>
+    </div>
+
+    <ul class="hero-badges" aria-label="Garantias">
+      <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3Z"/></svg> Criptografia de nível bancário</li>
+      <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg> Sem cartão de crédito</li>
+      <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Dados protegidos pela LGPD</li>
+    </ul>
+
+    <div class="hero-visual reveal">
+      <div class="dash-card">
+        <div class="dash-top">
+          <div class="dash-dots"><span></span><span></span><span></span></div>
+          <span class="text-xs text-faint mono">painel · atualizado agora</span>
+        </div>
+        <div class="dash-grid">
+          <div class="dash-panel">
+            <h4>Patrimônio total</h4>
+            <div class="dash-number mono">R$ 184.320</div>
+            <span class="pill-tag pill-up">+4,7% no mês</span>
+            <div class="dash-chart" aria-hidden="true">
+              <span style="height:35%"></span><span style="height:52%"></span><span style="height:40%"></span>
+              <span style="height:65%"></span><span style="height:58%"></span><span style="height:80%"></span>
+              <span style="height:70%"></span><span style="height:92%"></span><span style="height:84%"></span>
+            </div>
+          </div>
+          <div class="dash-panel">
+            <h4>Sugestões da Aurora</h4>
+            <ul class="dash-list">
+              <li><span>Realocar 8% da reserva</span><span class="pill-tag pill-up">Novo</span></li>
+              <li><span>CDB vence em 6 dias</span><span class="pill-tag pill-down">Atenção</span></li>
+              <li><span>Meta viagem em dia</span><span class="pill-tag pill-up">92%</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGO STRIP ============ -->
+<section class="logo-strip">
+  <p class="logo-strip-label">Times financeiros que já confiam na Aurora</p>
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack">
+      <!-- filled by JS (duplicated for seamless loop) -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAGLINE REVEAL ============ -->
+<section class="tagline-section">
+  <div class="container">
+    <p class="tagline-text text-4xl" id="taglineText" style="font-size:clamp(1.875rem,4vw,3rem);line-height:1.25;">
+      Você não precisa entender de mercado financeiro para tomar boas decisões. A Aurora traduz seus números em ações claras, todos os dias.
+    </p>
+  </div>
+</section>
+
+<!-- ============ SEÇÃO 2 — BENEFÍCIOS ============ -->
+<section class="section" id="beneficios">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">O que a Aurora oferece</p>
+      <h2 class="text-4xl">Tudo o que você precisa para entender seu dinheiro</h2>
+      <p class="text-muted text-lg">Cinco funções pensadas para transformar dados financeiros dispersos em decisões simples.</p>
+    </div>
+    <div class="benefits-grid">
+      <article class="benefit-card reveal">
+        <div class="icon-tile" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="12" width="8" height="9" rx="2"/><rect x="3" y="14" width="8" height="7" rx="2"/></svg></div>
+        <h3 class="text-lg">Visão unificada</h3>
+        <p class="text-muted text-sm">Conecte contas, corretoras e cartões e veja seu patrimônio completo em um painel só, atualizado em tempo real.</p>
+      </article>
+      <article class="benefit-card reveal">
+        <div class="icon-tile" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 10h.01M12 10h.01M16 10h.01"/><path d="M21 12c0 4.4-4 8-9 8-1.4 0-2.7-.3-3.9-.8L3 20l1-4.2C3.4 14.5 3 13.3 3 12c0-4.4 4-8 9-8s9 3.6 9 8Z"/></svg></div>
+        <h3 class="text-lg">Recomendações no seu idioma</h3>
+        <p class="text-muted text-sm">A IA explica cada sugestão em linguagem simples: o que fazer, por quê, e o impacto esperado.</p>
+      </article>
+      <article class="benefit-card reveal">
+        <div class="icon-tile" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h3 class="text-lg">Alertas que importam</h3>
+        <p class="text-muted text-sm">Receba um aviso só quando algo muda de verdade: queda de rentabilidade, vencimento de CDB ou desvio da sua meta.</p>
+      </article>
+      <article class="benefit-card reveal">
+        <div class="icon-tile" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 17h4v4H3zM10 10h4v11h-4zM17 4h4v17h-4z"/></svg></div>
+        <h3 class="text-lg">Simulações ilimitadas</h3>
+        <p class="text-muted text-sm">Teste cenários de aposentadoria, compra de imóvel ou troca de carro antes de decidir, quantas vezes quiser.</p>
+      </article>
+      <article class="benefit-card reveal">
+        <div class="icon-tile" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3 class="text-lg">Segurança bancária</h3>
+        <p class="text-muted text-sm">Criptografia ponta a ponta e acesso somente leitura às suas contas. A Aurora nunca guarda suas senhas.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEÇÃO 3 — SIMULADOR COM CHATBOT ============ -->
+<section class="section" id="simulador">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Experimente agora</p>
+      <h2 class="text-4xl">Converse com a Aurora antes de criar sua conta</h2>
+      <p class="text-muted text-lg">Escolha uma pergunta ou escreva a sua. Veja como a IA explica seus números em segundos.</p>
+    </div>
+
+    <div class="sim-wrap reveal">
+      <div class="sim-prompts" aria-label="Perguntas sugeridas">
+        <button class="prompt-chip" data-q="aposentadoria">Quanto vou precisar para me aposentar aos 60?</button>
+        <button class="prompt-chip" data-q="cdb">Vale a pena migrar do CDB para o Tesouro?</button>
+        <button class="prompt-chip" data-q="diversificar">Como diversificar R$ 20 mil hoje?</button>
+        <button class="prompt-chip" data-q="reserva">Minha reserva de emergência está no tamanho certo?</button>
+      </div>
+
+      <div class="chat-card">
+        <div class="chat-head">
+          <div class="chat-avatar" aria-hidden="true"></div>
+          <div>
+            <div class="text-sm" style="font-weight:600;">Assistente Aurora</div>
+            <div class="chat-status"><span aria-hidden="true"></span> Online agora</div>
+          </div>
+        </div>
+        <div class="chat-body" id="chatBody" aria-live="polite">
+          <div class="msg msg-bot">Oi! Sou a IA da Aurora. Escolha uma pergunta ao lado ou digite a sua para ver uma simulação.</div>
+        </div>
+        <div class="chat-lead" id="chatLead">
+          <p class="text-sm" style="font-weight:600;">Gostou da resposta?</p>
+          <p class="text-sm text-muted">Receba essa simulação completa, com números detalhados, no seu email.</p>
+          <div class="lead-form">
+            <input class="lead-input" type="email" id="chatEmail" placeholder="Seu email">
+            <button class="btn btn-primary btn-sm" id="chatLeadBtn" type="button">Enviar</button>
+          </div>
+        </div>
+        <form class="chat-input-row" id="chatForm">
+          <label for="chatInput" class="visually-hidden" style="position:absolute;left:-9999px;">Sua mensagem</label>
+          <input type="text" id="chatInput" placeholder="Digite sua pergunta sobre finanças..." autocomplete="off">
+          <button type="submit" class="chat-send" aria-label="Enviar mensagem">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 12 18-8-8 18-2-8-8-2Z"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+    <p class="chat-disclaimer">Simulação ilustrativa para fins de demonstração. Não constitui recomendação de investimento.</p>
+  </div>
+</section>
+
+<!-- ============ SEÇÃO 4 — COMO FUNCIONA + DEMO ============ -->
+<section class="section" id="como-funciona">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Como funciona</p>
+      <h2 class="text-4xl">Comece a usar em minutos</h2>
+      <p class="text-muted text-lg">Conecte suas contas, deixe a IA organizar tudo e receba um plano claro todo mês.</p>
+    </div>
+
+    <div class="steps-grid">
+      <article class="step-card reveal">
+        <span class="step-num mono">Passo 01</span>
+        <h3 class="text-lg">Conecte suas contas</h3>
+        <p class="text-muted text-sm">Linke corretoras, bancos e carteiras em segundos, com acesso somente leitura e sem compartilhar senhas.</p>
+      </article>
+      <article class="step-card reveal">
+        <span class="step-num mono">Passo 02</span>
+        <h3 class="text-lg">A Aurora organiza tudo</h3>
+        <p class="text-muted text-sm">A IA categoriza gastos, consolida investimentos e identifica padrões automaticamente, sem esforço manual.</p>
+      </article>
+      <article class="step-card reveal">
+        <span class="step-num mono">Passo 03</span>
+        <h3 class="text-lg">Você recebe o plano</h3>
+        <p class="text-muted text-sm">Todo mês, um resumo claro com o que fazer: onde ajustar, onde aportar e o que revisar.</p>
+      </article>
+    </div>
+
+    <div class="demo-card reveal" id="demo">
+      <div class="demo-visual">
+        <div class="aurora-glow" style="opacity:.6;" aria-hidden="true"><span></span><span></span></div>
+        <button class="play-btn" id="playDemoBtn" aria-label="Assistir demonstração de 2 minutos">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg>
+        </button>
+      </div>
+      <div>
+        <p class="eyebrow">Sessão demo</p>
+        <h3 class="text-2xl" style="margin-top:.5rem;margin-bottom:.5rem;">Peça uma demonstração personalizada</h3>
+        <p class="text-muted" style="margin-bottom:var(--sp-400);">Em 20 minutos, mostramos a Aurora com dados parecidos com os seus e respondemos suas dúvidas ao vivo.</p>
+        <form class="demo-form" id="demoForm">
+          <div class="form-row">
+            <label for="demoEmail">Email profissional</label>
+            <input type="email" id="demoEmail" placeholder="voce@empresa.com" required>
+          </div>
+          <div class="form-row">
+            <label for="demoGoal">O que você quer resolver?</label>
+            <select id="demoGoal">
+              <option>Organizar investimentos pessoais</option>
+              <option>Gerenciar carteiras de clientes</option>
+              <option>Automatizar relatórios financeiros</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Agendar demonstração</button>
+          <p class="field-msg" id="demoMsg" role="alert"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEÇÃO 5 — PRICING ============ -->
+<section class="section" id="precos">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Planos</p>
+      <h2 class="text-4xl">Preço transparente, sem taxas escondidas</h2>
+      <p class="text-muted text-lg">Comece grátis por 7 dias em qualquer plano. Cancele quando quiser, direto pelo app.</p>
+    </div>
+
+    <div class="pricing-toggle reveal">
+      <span class="text-sm" id="labelMonthly" style="font-weight:600;">Mensal</span>
+      <button class="toggle-switch" id="billingToggle" role="switch" aria-checked="false" aria-label="Alternar entre cobrança mensal e anual"></button>
+      <span class="text-sm text-muted" id="labelYearly">Anual</span>
+      <span class="save-badge">Economize 20%</span>
+    </div>
+
+    <div class="pricing-grid">
+      <article class="price-card reveal">
+        <div>
+          <h3 class="text-xl">Essencial</h3>
+          <p class="text-muted text-sm" style="margin-top:.25rem;">Para quem está começando a organizar a vida financeira.</p>
+        </div>
+        <div class="price-value">
+          <span class="text-lg">R$</span>
+          <span class="amount price-amount" data-monthly="27,90" data-yearly="22,30">27,90</span>
+          <span class="text-muted text-sm">/mês</span>
+        </div>
+        <button class="btn btn-ghost btn-block">Começar grátis</button>
+        <ul class="price-feats">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Conecte até 3 contas</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Painel de patrimônio consolidado</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Alertas básicos</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Simulações ilimitadas</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Suporte por email</li>
+        </ul>
+      </article>
+
+      <article class="price-card popular reveal">
+        <span class="popular-badge">Mais escolhido</span>
+        <div>
+          <h3 class="text-xl">Pro</h3>
+          <p class="text-muted text-sm" style="margin-top:.25rem;">Para quem investe ativamente e quer decisões mais rápidas.</p>
+        </div>
+        <div class="price-value">
+          <span class="text-lg">R$</span>
+          <span class="amount price-amount" data-monthly="64,90" data-yearly="51,90">64,90</span>
+          <span class="text-muted text-sm">/mês</span>
+        </div>
+        <button class="btn btn-primary btn-block">Começar teste grátis</button>
+        <ul class="price-feats">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Contas ilimitadas</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Recomendações avançadas de IA</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Simulador de cenários completo</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Alertas inteligentes em tempo real</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Relatório mensal personalizado</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Suporte prioritário</li>
+        </ul>
+      </article>
+
+      <article class="price-card reveal">
+        <div>
+          <h3 class="text-xl">Empresarial</h3>
+          <p class="text-muted text-sm" style="margin-top:.25rem;">Para escritórios e gestores de patrimônio.</p>
+        </div>
+        <div class="price-value">
+          <span class="text-2xl" style="font-weight:700;">Sob consulta</span>
+        </div>
+        <a href="#hero-form" class="btn btn-ghost btn-block">Falar com vendas</a>
+        <ul class="price-feats">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Multi carteira para clientes</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Painel com sua marca</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Integrações via API</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor"><path d="m5 13 4 4L19 7"/></svg> Gerente de conta dedicado</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEÇÃO 6 — FAQ ============ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Perguntas frequentes</p>
+      <h2 class="text-4xl">Ainda com dúvidas?</h2>
+      <p class="text-muted text-lg">Reunimos as perguntas mais comuns sobre segurança, conexões e cobrança.</p>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Meus dados bancários ficam seguros?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Sim. Usamos criptografia de ponta a ponta e conexão somente leitura com bancos e corretoras. A Aurora nunca armazena senhas nem tem permissão para movimentar seu dinheiro.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">A Aurora tem acesso para movimentar meu dinheiro?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Não. O acesso é estritamente de leitura, usado apenas para consolidar informações e gerar análises. Nenhuma transação pode ser feita através da plataforma.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Quais corretoras e bancos são compatíveis?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>A Aurora se conecta com os principais bancos e corretoras do Brasil. Se a sua instituição não estiver na lista, você pode importar extratos manualmente enquanto ampliamos as integrações.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Preciso entender de investimentos para usar a Aurora?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Não. A plataforma foi criada justamente para traduzir termos técnicos em explicações simples, então funciona tanto para iniciantes quanto para investidores experientes.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Posso cancelar quando quiser?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Sim, o cancelamento é feito em poucos cliques direto no app, sem multa e sem precisar ligar para o suporte.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">A Aurora substitui um assessor de investimentos?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Não. A Aurora organiza dados e sugere caminhos com base em IA, mas não é uma consultoria de valores mobiliários. Para decisões complexas, recomendamos apoio de um profissional certificado.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Existe um período de teste gratuito?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Sim, todos os planos pagos incluem 7 dias grátis, sem necessidade de cartão de crédito para começar.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="section" style="padding-top:0;">
+  <div class="final-cta reveal">
+    <div class="aurora-glow" style="opacity:.7;" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:var(--sp-400);width:100%;">
+      <h2 class="text-4xl">Pronto para ter clareza sobre seu dinheiro?</h2>
+      <p class="text-muted text-lg" style="max-width:520px;">Junte-se à lista de espera e seja avisado assim que sua vaga abrir, com 7 dias grátis garantidos.</p>
+      <form class="hero-actions" id="footer-form" novalidate style="max-width:440px;">
+        <div class="lead-form">
+          <input class="lead-input" type="email" id="footerEmail" placeholder="Seu melhor email" required>
+          <button type="submit" class="btn btn-primary">Entrar na lista</button>
+        </div>
+        <p class="field-msg" id="footerEmailMsg" role="alert"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ SEÇÃO 7 — FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="nav-logo"><span class="nav-logo-mark" aria-hidden="true"></span> Aurora</a>
+        <p class="text-sm">Uma plataforma de IA para organizar investimentos e trazer clareza para decisões financeiras.</p>
+        <p class="text-sm text-muted" style="margin-top:var(--sp-300);">contato@usearora.com.br</p>
+      </div>
+      <div class="footer-col">
+        <h5>Produto</h5>
+        <ul>
+          <li><a href="#beneficios">Benefícios</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#precos">Preços</a></li>
+          <li><a href="#simulador">Simulador</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="#" data-toast="Página em construção.">Sobre</a></li>
+          <li><a href="#" data-toast="Página em construção.">Carreiras</a></li>
+          <li><a href="#" data-toast="Página em construção.">Imprensa</a></li>
+          <li><a href="#faq">Central de ajuda</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#" data-toast="Política de privacidade em breve.">Política de privacidade</a></li>
+          <li><a href="#" data-toast="Termos de uso em breve.">Termos de uso</a></li>
+          <li><a href="#" data-toast="Política de cookies em breve.">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Aurora Tecnologia Financeira Ltda. Todos os direitos reservados.</span>
+      <div class="social-row">
+        <a href="#" aria-label="Aurora no Instagram" data-toast="Abrindo Instagram."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="Aurora no LinkedIn" data-toast="Abrindo LinkedIn."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4.5a2.5 2.5 0 0 1 5 0V17M12 10v7"/></svg></a>
+        <a href="#" aria-label="Aurora no X" data-toast="Abrindo X."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m4 4 16 16M20 4 4 20"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+  <span id="toastMsg"></span>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- toast ---------- */
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  let toastTimer;
+  function showToast(msg){
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>toast.classList.remove('show'), 3200);
+  }
+  document.querySelectorAll('[data-toast]').forEach(el=>{
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      showToast(this.getAttribute('data-toast'));
+    });
+  });
+
+  /* ---------- logo strip marquee (generated wordmarks, no external images) ---------- */
+  const brands = ["Vero Capital","Nortem Investimentos","Blend Gestora","Alto Patrimônio","Cedro Wealth","Marfim Ativos"];
+  const track = document.getElementById('marqueeTrack');
+  function iconFor(i){
+    const colors=["#E23D74","#7C5CFA","#F5A8C8","#B79CFA","#E23D74","#7C5CFA"];
+    return '<svg width="18" height="18" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="'+colors[i%colors.length]+'" opacity="0.7"/></svg>';
+  }
+  let html = '';
+  for(let rep=0; rep<2; rep++){
+    brands.forEach((b,i)=>{ html += '<span class="logo-wordmark">'+iconFor(i)+b+'</span>'; });
+  }
+  track.innerHTML = html;
+
+  /* ---------- scroll reveal ---------- */
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  /* ---------- tagline word by word reveal ---------- */
+  const taglineEl = document.getElementById('taglineText');
+  const words = taglineEl.textContent.trim().split(/\s+/);
+  taglineEl.innerHTML = words.map((w,i)=>'<span class="word" style="transition-delay:'+(i*35)+'ms">'+w+'</span>').join(' ');
+  const taglineWords = taglineEl.querySelectorAll('.word');
+  const taglineIO = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        taglineWords.forEach(w=>w.classList.add('active'));
+        taglineIO.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.4});
+  taglineIO.observe(taglineEl);
+
+  /* ---------- nav mobile menu ---------- */
+  const burger = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  function closeMenu(){
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    mobileMenu.classList.remove('open');
+  }
+  burger.addEventListener('click', ()=>{
+    const open = burger.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true':'false');
+    mobileMenu.classList.toggle('open', open);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+
+  /* ---------- email validation helper ---------- */
+  function isValidEmail(v){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+  function handleLeadForm(formId, inputId, msgId, successMsg){
+    const form = document.getElementById(formId);
+    if(!form) return;
+    const input = document.getElementById(inputId);
+    const msg = document.getElementById(msgId);
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const val = input.value.trim();
+      if(!isValidEmail(val)){
+        input.classList.add('error');
+        msg.textContent = 'Digite um email válido para continuar.';
+        return;
+      }
+      input.classList.remove('error');
+      msg.textContent = '';
+      const btn = form.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      setTimeout(()=>{
+        btn.textContent = originalText;
+        btn.disabled = false;
+        input.value = '';
+        showToast(successMsg);
+      }, 700);
+    });
+  }
+  handleLeadForm('hero-form','heroEmail','heroEmailMsg','Prontinho! Você entrou na lista de espera.');
+  handleLeadForm('footer-form','footerEmail','footerEmailMsg','Prontinho! Você entrou na lista de espera.');
+
+  /* demo request form */
+  const demoForm = document.getElementById('demoForm');
+  demoForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const input = document.getElementById('demoEmail');
+    const msg = document.getElementById('demoMsg');
+    if(!isValidEmail(input.value.trim())){
+      input.style.borderColor = 'var(--pink)';
+      msg.textContent = 'Digite um email válido para agendar.';
+      return;
+    }
+    input.style.borderColor = '';
+    msg.textContent = '';
+    showToast('Demonstração solicitada! Entraremos em contato em breve.');
+    demoForm.reset();
+  });
+
+  document.getElementById('playDemoBtn').addEventListener('click', function(){
+    showToast('O vídeo de demonstração abriria aqui.');
+  });
+
+  /* ---------- pricing toggle ---------- */
+  const toggle = document.getElementById('billingToggle');
+  const amounts = document.querySelectorAll('.price-amount');
+  const labelMonthly = document.getElementById('labelMonthly');
+  const labelYearly = document.getElementById('labelYearly');
+  let yearly = false;
+  toggle.addEventListener('click', function(){
+    yearly = !yearly;
+    toggle.classList.toggle('on', yearly);
+    toggle.setAttribute('aria-checked', yearly ? 'true':'false');
+    labelMonthly.style.fontWeight = yearly ? '400':'600';
+    labelMonthly.style.color = yearly ? 'var(--text-2)':'var(--text-1)';
+    labelYearly.style.fontWeight = yearly ? '600':'400';
+    labelYearly.style.color = yearly ? 'var(--text-1)':'var(--text-2)';
+    amounts.forEach(a=>{
+      a.style.opacity = '0';
+      setTimeout(()=>{
+        a.textContent = yearly ? a.getAttribute('data-yearly') : a.getAttribute('data-monthly');
+        a.style.opacity = '1';
+      }, 180);
+    });
+  });
+  amounts.forEach(a=>{ a.style.transition = 'opacity 220ms ease'; });
+
+  /* ---------- FAQ accordion ---------- */
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const btn = item.querySelector('.faq-q');
+    btn.addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o=>{
+        o.classList.remove('open');
+        o.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  /* ---------- chat simulator ---------- */
+  const chatBody = document.getElementById('chatBody');
+  const chatForm = document.getElementById('chatForm');
+  const chatInput = document.getElementById('chatInput');
+  const chatLead = document.getElementById('chatLead');
+  let exchanges = 0;
+
+  const responses = {
+    aposentadoria: "Com base em um perfil parecido com o seu, aportando cerca de R$ 850 por mês a partir de hoje, uma simulação com retorno médio de 0,7% ao mês mostra um patrimônio estimado de R$ 612 mil aos 60 anos. Quer que eu detalhe os aportes por tipo de ativo?",
+    cdb: "Depende do prazo e da liquidez que você precisa. No cenário simulado, um CDB a 102% do CDI rendeu 11,8% ao ano, contra 11,3% do Tesouro Selic no mesmo período, mas o Tesouro tem liquidez diária garantida. Quer comparar os dois lado a lado com seus valores?",
+    diversificar: "Para R$ 20 mil, uma distribuição simulada equilibrada ficaria em torno de 40% em renda fixa pós fixada, 30% em fundos multimercado, 20% em ações e 10% em reserva de oportunidade. Posso ajustar essa proporção ao seu perfil de risco.",
+    reserva: "Sua reserva ideal costuma cobrir de 4 a 6 meses de despesas fixas. Em uma simulação com gasto mensal de R$ 4.200, isso equivale a uma faixa entre R$ 16.800 e R$ 25.200 guardados em ativos de alta liquidez.",
+    default: "Essa é uma ótima pergunta. Em uma simulação com dados parecidos com o seu perfil, a Aurora normalmente sugere revisar sua alocação atual antes de qualquer novo aporte. Quer ver essa simulação completa?"
+  };
+
+  function addMessage(text, who){
+    const div = document.createElement('div');
+    div.className = 'msg ' + (who === 'user' ? 'msg-user' : 'msg-bot');
+    div.textContent = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function botReply(text){
+    const typing = document.createElement('div');
+    typing.className = 'typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    chatBody.appendChild(typing);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    setTimeout(()=>{
+      typing.remove();
+      addMessage(text, 'bot');
+      exchanges++;
+      if(exchanges >= 1){
+        chatLead.classList.add('show');
+      }
+    }, 900 + Math.random()*400);
+  }
+
+  function handleUserMessage(text, key){
+    addMessage(text, 'user');
+    const reply = responses[key] || responses.default;
+    botReply(reply);
+  }
+
+  document.querySelectorAll('.prompt-chip').forEach(chip=>{
+    chip.addEventListener('click', function(){
+      handleUserMessage(this.textContent.trim(), this.getAttribute('data-q'));
+    });
+  });
+
+  chatForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const val = chatInput.value.trim();
+    if(!val) return;
+    let key = 'default';
+    const lower = val.toLowerCase();
+    if(lower.includes('aposent')) key='aposentadoria';
+    else if(lower.includes('cdb') || lower.includes('tesouro')) key='cdb';
+    else if(lower.includes('diversif')) key='diversificar';
+    else if(lower.includes('reserva') || lower.includes('emerg')) key='reserva';
+    handleUserMessage(val, key);
+    chatInput.value = '';
+  });
+
+  document.getElementById('chatLeadBtn').addEventListener('click', function(){
+    const input = document.getElementById('chatEmail');
+    if(!isValidEmail(input.value.trim())){
+      input.style.borderColor = 'var(--pink)';
+      return;
+    }
+    input.style.borderColor = '';
+    showToast('Enviamos a simulação completa para o seu email.');
+    input.value = '';
+    chatLead.classList.remove('show');
+  });
+
+})();
+</script>
+</body>
+</html>
