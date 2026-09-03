@@ -169,8 +169,7 @@ levemente mais escuros (ex. `rgb(196,40,95)` / `rgb(178,49,127)`) em
 
 ## Histórico
 
-Este projeto começou como um artboard do **Figma Design Canvas**
-(`Aurora Landing Page.dc.html`, usando `support.js`). Foi convertido para
+Este projeto começou como um artboard do **Figma** . Foi convertido para
 HTML/CSS/JS padrão para poder ser hospedado em qualquer lugar, editado em
 qualquer editor de código e rodar sem nenhuma ferramenta proprietária.
 
@@ -178,14 +177,11 @@ qualquer editor de código e rodar sem nenhuma ferramenta proprietária.
 
 Planejamento original da atividade, do grupo responsável pelo projeto:
 
-| Fase | Período | Atividades | Resultado esperado | Responsabilidade |
-|---|---|---|---|---|
-| **Descoberta** | 17 a 21/08 | Revisar a solução da Etapa 1; analisar o feedback recebido; entender o público B2B da Aurora; identificar dores; mapear necessidades e expectativas; pesquisar concorrentes e soluções similares; identificar oportunidades de diferenciação; levantar dados/referências que sustentem as decisões | Mapa de oportunidades; análise da interface atual; diagnóstico com argumentos; benchmarking | Responsável: Patrick + Matheus · Apoio: Fabricio · Acompanhamento: Kauan e Edu |
-| **Definição das funcionalidades** | 24/08 | Definir problema principal, público prioritário, persona/protopersona B2B, proposta de valor, diferencial, CTA principal, ação desejada do usuário e hipótese de valor | Lista de definições do que será feito; frase que define o projeto ("Para [público], que enfrenta [problema], a Aurora oferece [solução], permitindo [benefício].") | Responsável: Patrick + Matheus · Apoio: Fabricio · Acompanhamento: Kauan e Edu |
-| **Desenhar a solução** | 25 a 28/08 | Mapear jornada e criar user flow; definir arquitetura e hierarquia de conteúdo; criar wireframes; definir estados de interação e mensagens de feedback; definir formulário e CTA | Jornada e fluxo; interface | Responsável: Patrick + Matheus · Apoio: Fabricio · Acompanhamento: Kauan e Edu |
-| **Desenvolvimento + testes** | 31/08 a 07/09 | Publicar a landing page com URL pública (Vercel, Netlify, Firebase Hosting ou similar); garantir responsividade para diferentes tamanhos de dispositivo; garantir que tudo funciona antes da entrega | Landing funcional; testes; deploy | Responsável: Fabricio · Apoio: Patrick + Matheus · Acompanhamento: Kauan e Edu |
-| **Documentar** | 07 a 09/09 | Consolidar todo o conteúdo em PDF; atualizar o Read.me; montar apresentação; entregar a atividade | Apresentação montada; atividade entregue | Responsável: Fabricio · Apoio: Patrick + Matheus · Acompanhamento: Kauan e Edu |
+| Fase | Período | Atividades | Resultado esperado | 
+|---|---|---|---|
+| **Descoberta** | 17 a 21/08 | Revisar a solução da Etapa 1; analisar o feedback recebido; entender o público B2B da Aurora; identificar dores; mapear necessidades e expectativas; pesquisar concorrentes e soluções similares; identificar oportunidades de diferenciação; levantar dados/referências que sustentem as decisões | Mapa de oportunidades; análise da interface atual; diagnóstico com argumentos; benchmarking | 
+| **Definição das funcionalidades** | 24/08 | Definir problema principal, público prioritário, persona/protopersona B2B, proposta de valor, diferencial, CTA principal, ação desejada do usuário e hipótese de valor | Lista de definições do que será feito; frase que define o projeto ("Para [público], que enfrenta [problema], a Aurora oferece [solução], permitindo [benefício].") | 
+| **Desenhar a solução** | 25 a 28/08 | Mapear jornada e criar user flow; definir arquitetura e hierarquia de conteúdo; criar wireframes; definir estados de interação e mensagens de feedback; definir formulário e CTA | Jornada e fluxo; interface | 
+| **Desenvolvimento + testes** | 31/08 a 07/09 | Publicar a landing page com URL pública (Vercel, Netlify, Firebase Hosting ou similar); garantir responsividade para diferentes tamanhos de dispositivo; garantir que tudo funciona antes da entrega | Landing funcional; testes; deploy |
+| **Documentar** | 07 a 09/09 | Consolidar todo o conteúdo em PDF; atualizar o Read.me; montar apresentação; entregar a atividade | Apresentação montada; atividade entregue |
 
-O deploy foi feito no GitHub Pages em vez das opções sugeridas (Vercel,
-Netlify ou Firebase Hosting), mas cumpre o mesmo resultado esperado da fase
-de desenvolvimento: URL pública, responsiva e funcional.
