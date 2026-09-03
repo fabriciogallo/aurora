@@ -39,6 +39,8 @@ function buildIcon(def, color, fills) {
   svg.style.color = color;
   svg.style.flexShrink = "0";
   svg.style.overflow = "visible";
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("focusable", "false");
   svg.innerHTML = body;
   return svg;
 }
@@ -96,11 +98,45 @@ function initFit() {
 
 function initVideoModal() {
   const modal = document.getElementById("video-modal");
-  if (!modal) return;
-  const open = () => modal.classList.remove("hidden");
-  const close = () => modal.classList.add("hidden");
+  const closeBtn = modal ? modal.querySelector(".js-close-video") : null;
+  const pageRoot = document.getElementById("root");
+  if (!modal || !closeBtn) return;
+
+  let lastFocused = null;
+
+  function focusableEls() {
+    return [...modal.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+      .filter(el => !el.disabled && el.offsetParent !== null);
+  }
+
+  function onKeydown(e) {
+    if (e.key === "Escape") { close(); return; }
+    if (e.key === "Tab") {
+      const els = focusableEls();
+      if (!els.length) return;
+      const first = els[0], last = els[els.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }
+
+  function open(e) {
+    lastFocused = (e && e.currentTarget) || document.activeElement;
+    modal.classList.remove("hidden");
+    if (pageRoot) pageRoot.setAttribute("inert", "");
+    document.addEventListener("keydown", onKeydown);
+    closeBtn.focus();
+  }
+
+  function close() {
+    modal.classList.add("hidden");
+    if (pageRoot) pageRoot.removeAttribute("inert");
+    document.removeEventListener("keydown", onKeydown);
+    if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+  }
+
   document.querySelectorAll(".js-open-video").forEach(b => b.addEventListener("click", open));
-  document.querySelectorAll(".js-close-video").forEach(b => b.addEventListener("click", close));
+  closeBtn.addEventListener("click", close);
   modal.addEventListener("click", e => { if (e.target === modal) close(); });
 }
 
@@ -118,8 +154,10 @@ function initPlanToggle() {
     btnMensal.style.background = anual ? "transparent" : "rgb(255,255,255)";
     btnMensal.style.fontWeight = anual ? "400" : "500";
     btnMensal.style.color = anual ? "rgb(255,255,255)" : "rgb(52,64,84)";
+    btnMensal.setAttribute("aria-pressed", anual ? "false" : "true");
     btnAnual.style.background = anual ? "rgb(255,255,255)" : "transparent";
     btnAnual.style.color = anual ? "rgb(23,15,73)" : "rgb(255,255,255)";
+    btnAnual.setAttribute("aria-pressed", anual ? "true" : "false");
     priceBasic.textContent = anual ? "R$ 27,50" : "R$ 30,00";
     priceBoreal.textContent = anual ? "R$ 45,82" : "R$ 49,99";
     pricePeriods.forEach(p => { p.textContent = anual ? "/por mês, no anual" : "/por mês"; });
@@ -210,13 +248,21 @@ function renderCalendar() {
   prevBtn.style.cursor = canBack ? "pointer" : "default";
   prevBtn.style.opacity = canBack ? "1" : ".4";
 
+  // Rebuilding the buttons below drops keyboard focus, so remember what kind
+  // of control had it and restore focus to its replacement afterwards.
+  const active = document.activeElement;
+  const refocus = { day: active && active.classList && active.classList.contains("cal-day") ? active.dataset.date : null,
+    slot: active && active.classList && active.classList.contains("cal-slot") ? active.dataset.time : null };
+
   daysGrid.innerHTML = "";
   for (let i = 0; i < first; i++) {
     const span = document.createElement("span");
     span.style.height = "32px";
     span.style.visibility = "hidden";
+    span.setAttribute("aria-hidden", "true");
     daysGrid.appendChild(span);
   }
+  let dayToFocus = null;
   for (let d = 1; d <= total; d++) {
     const date = new Date(base.getFullYear(), base.getMonth(), d);
     const iso = base.getFullYear() + "-" + String(base.getMonth() + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
@@ -230,6 +276,10 @@ function renderCalendar() {
     btn.className = "cal-day";
     btn.textContent = String(d);
     btn.disabled = off;
+    btn.dataset.date = iso;
+    btn.setAttribute("role", "gridcell");
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    btn.setAttribute("aria-label", String(d) + " de " + MONTHS[base.getMonth()] + " de " + base.getFullYear() + (off ? (weekend ? " (fim de semana, indisponível)" : " (data passada, indisponível)") : ""));
     Object.assign(btn.style, {
       height: "32px", borderRadius: "8px", border: "1px solid " + (on ? "rgb(226,61,116)" : "transparent"),
       background: on ? "rgb(226,61,116)" : "transparent",
@@ -246,11 +296,13 @@ function renderCalendar() {
         renderCalendar();
       });
     }
+    if (refocus.day === iso) dayToFocus = btn;
     daysGrid.appendChild(btn);
   }
 
   const times = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"];
   slotsGrid.innerHTML = "";
+  let slotToFocus = null;
   times.forEach(t => {
     const on = calState.selTime === t;
     const btn = document.createElement("button");
@@ -258,6 +310,8 @@ function renderCalendar() {
     btn.className = "cal-slot";
     btn.textContent = t;
     btn.disabled = !calState.selDate;
+    btn.dataset.time = t;
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
     Object.assign(btn.style, {
       height: "32px", borderRadius: "999px", border: "1px solid " + (on ? "rgb(105,80,157)" : "rgb(231,222,233)"),
       background: on ? "rgb(105,80,157)" : "rgb(255,255,255)",
@@ -272,8 +326,12 @@ function renderCalendar() {
       setFormMessage("", false);
       renderCalendar();
     });
+    if (refocus.slot === t) slotToFocus = btn;
     slotsGrid.appendChild(btn);
   });
+
+  if (dayToFocus) dayToFocus.focus();
+  else if (slotToFocus) slotToFocus.focus();
 
   summary.textContent = calState.selDate && calState.selTime
     ? "Reunião de 30 min em " + calState.selDate.split("-").reverse().join("/") + " às " + calState.selTime + " — adicionamos ao seu Google Agenda ao enviar."
@@ -330,6 +388,9 @@ function renderSteps() {
     label.style.fontWeight = on ? "700" : "400";
     label.style.color = on ? "rgb(255,255,255)" : "rgba(255,255,255,0.56)";
     item.style.cursor = s.n < currentStep ? "pointer" : "default";
+    if (on) item.setAttribute("aria-current", "step");
+    else item.removeAttribute("aria-current");
+    item.setAttribute("aria-disabled", s.n < currentStep ? "false" : "true");
   });
 
   for (let n = 1; n <= 4; n++) {
