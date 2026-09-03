@@ -1,1006 +1,600 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aurora</title>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurora — RH as a Service</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Manrope:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <link
-      rel="shortcut icon"
-      href="assets/images/img-logo-aurora.png"
-      type="image/x-icon"
-    />
+<div class="page" data-r="root" id="root">
 
-    <!-- Fontes do Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-
-    <!-- Bootstrap Link -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-
-    <!-- Arquivo CSS Externo -->
-    <link rel="stylesheet" href="assets/style.css" />
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-white py-3 fixed-top shadow-sm"
-    >
-      <div class="container">
-        <a
-          class="navbar-brand fw-bold d-flex align-items-center gap-2"
-          href="#"
-        >
-          <img
-            src="assets/images/img-logo-aurora.png"
-            alt="Logo da Aurora"
-            class="brand-logo-img"
-          />
-          Aurora
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Alternar navegação"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse justify-content-center"
-          id="navbarNav"
-        >
-          <ul class="navbar-nav gap-lg-4 text-center">
-            <li class="nav-item">
-              <a class="nav-link" href="#solucao">Solução</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#beneficios">Benefícios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#planos">Planos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#clientes">Clientes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contato">Contato</a>
-            </li>
-          </ul>
-        </div>
-        <div class="d-none d-lg-flex">
-          <a href="#lead-form" class="btn btn-dark-brand rounded-pill px-4"
-            >Solicitar Demonstração</a
-          >
-        </div>
-        <div class="d-flex d-lg-none ms-2">
-          <a
-            href="#lead-form"
-            class="btn btn-dark-brand rounded-pill btn-sm px-3"
-            >Demonstração</a
-          >
-        </div>
-      </div>
+  <div class="header" data-r="hdr">
+    <a class="header-logo" data-r="hdr-logo" href="#top" data-nav aria-label="Aurora"></a>
+    <nav class="header-nav" data-r="hdr-nav">
+      <a href="#produtos" data-nav class="nav-link nav-link-text">Produtos</a>
+      <a href="#boreal" data-nav class="nav-link nav-link-text">Simulador</a>
+      <a href="#planos" data-nav class="nav-link nav-link-text">Planos</a>
+      <a href="#contato" data-nav class="nav-link nav-link-text">Contato</a>
     </nav>
+    <a data-r="hdr-cta" href="#contato" data-nav class="btn-cta-hdr header-cta">Fale com a gente</a>
+  </div>
 
-    <!-- Hero Section -->
-    <section class="py-5 overflow-hidden" id="solucao">
-      <div class="container py-3 py-lg-5">
-        <div class="row align-items-center pb-4 pb-lg-5">
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <span
-              class="hero-badge bg-light text-primary mb-3 px-3 py-2 border rounded-pill"
-            >
-              <i class="bi bi-stars"></i> Inteligência Artificial para RH
-            </span>
-            <h1 class="mb-4">
-              Transforme dados em decisões
-              <span class="text-gradient">conscientes</span> sobre pessoas.
-            </h1>
-            <p class="lead text-muted mb-4">
-              A plataforma que conecta inteligência de dados e gestão humana
-              para ajudar líderes a tomar decisões estratégicas com mais
-              segurança sobre promoção, retenção e desenvolvimento.
-            </p>
-            <div class="d-flex flex-wrap gap-3 mb-4">
-              <a
-                href="#lead-form"
-                class="btn btn-dark-brand rounded-pill px-4 py-3"
-              >
-                Solicitar Demonstração <i class="bi bi-arrow-right"></i>
-              </a>
-              <a
-                href="#beneficios"
-                class="btn btn-outline-secondary rounded-pill px-4 py-3"
-              >
-                Conhecer a Plataforma
-              </a>
-            </div>
-            <div class="d-flex align-items-center gap-2 text-muted small">
-              <div class="d-flex">
-                <img
-                  src="assets/images/img-ceo-1.png"
-                  alt="Líder cliente Aurora"
-                  class="avatar-stack-img"
-                />
-                <img
-                  src="assets/images/img-ceo-2.png"
-                  alt="Líder cliente Aurora"
-                  class="avatar-stack-img"
-                />
-                <img
-                  src="assets/images/img-ceo-3.png"
-                  alt="Líder cliente Aurora"
-                  class="avatar-stack-img"
-                />
-                <img
-                  src="assets/images/img-ceo-4.png"
-                  alt="Líder cliente Aurora"
-                  class="avatar-stack-img"
-                />
-              </div>
-              <span
-                >Mais de <strong class="text-dark">500+</strong> líderes confiam
-                na Aurora</span
-              >
-            </div>
-          </div>
+  <section class="hero" data-r="hero" id="top">
+    <div class="hero-band" data-r="band">
+    <div class="hero-decor" data-r="deco">
+      <div class="hero-decor-blob-green"></div>
+      <div class="hero-decor-blob-red"></div>
+      <div class="hero-decor-blob-purple"></div>
+      <div class="hero-decor-lines"></div>
+    </div>
 
-          <!-- Mockup / Gráfico -->
-          <div class="col-lg-6">
-            <div class="card hero-chart-card shadow-lg border-0 p-4">
-              <div
-                class="d-flex justify-content-between align-items-start mb-4"
-              >
-                <div>
-                  <h6 class="fw-bold mb-0">Retenção de Talentos</h6>
-                  <small class="text-muted">Previsão baseada em IA</small>
-                </div>
-                <span
-                  class="badge bg-success bg-opacity-10 text-success d-flex align-items-center gap-1"
-                >
-                  <i class="bi bi-graph-up-arrow"></i> +12%
-                </span>
-              </div>
+    <div class="hero-copy" data-r="hero-copy">
+      <div class="hero-copy-stack">
+        <div class="hero-heading-group">
+          <span class="eyebrow-text" data-r="wrap">Pessoas - Dados - Tomada de Decisão</span>
+          <h1 class="hero-title" data-r="h1">Transforme dados sobre pessoas em decisões melhores para sua empresa.</h1>
+        </div>
+        <p class="hero-desc" data-r="fw">A Aurora é uma solução de RH as a Service que conecta performance, feedbacks, experiência e inteligência artificial para ajudar sua empresa a desenvolver pessoas e tomar decisões com mais segurança.</p>
+      </div>
+      <div class="hero-cta-row">
+        <a href="#contato" data-nav class="btn-cta-hero hero-cta-primary">Agendar demonstração</a>
+        <button type="button" class="btn-outline-pink js-open-video hero-cta-secondary">
+          <svg class="no-shrink" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(208,69,147)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="rgb(208,69,147)" stroke="none"></polygon></svg>
+          Veja como funciona
+        </button>
+      </div>
+    </div>
 
-              <div class="hero-chart-area rounded-3 w-100">
-                <img
-                  src="assets/images/img-grafico.png"
-                  alt="Gráfico de retenção de talentos"
-                  class="hero-chart-img"
-                />
-              </div>
+    <div class="hero-art" data-r="hero-art">
+      <div class="hero-art-dots-a"></div>
+      <div class="hero-art-dots-b"></div>
+      <div class="hero-art-photo"></div>
+      <div class="hero-art-card-companies">
+        <div class="col-start">
+          <span class="stat-number">+ 100</span>
+          <span class="stat-label">Companhias confiam</span>
+        </div>
+      </div>
+      <div class="hero-art-chip-teal">
+        <span data-icon="ic-fact-check" data-icon-color="rgb(255,255,255)"></span>
+      </div>
+      <div class="hero-art-chip-pink">
+        <span data-icon="ic-analytics" data-icon-color="rgb(255,255,255)"></span>
+      </div>
+      <div class="hero-art-card-people">
+        <div class="icon-box-purple">
+          <span data-icon="ic-people" data-icon-color="rgb(116,12,206)"></span>
+        </div>
+        <div class="col-start">
+          <span class="stat-number">+3000</span>
+          <span class="stat-caption">Pessoas estão usando para tomar decisões melhores</span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
 
-              <div class="row mt-4 text-center">
-                <div class="col-4 hero-stat-divider">
-                  <small class="text-muted d-block mb-1"
-                    ><i class="bi bi-bar-chart-line text-primary"></i>
-                    Engajamento</small
-                  >
-                  <strong class="fs-5 text-dark">94%</strong>
-                </div>
-                <div class="col-4 hero-stat-divider">
-                  <small class="text-muted d-block mb-1"
-                    ><i class="bi bi-people text-primary"></i> Risco
-                    Evasão</small
-                  >
-                  <strong class="fs-5 text-dark">Baixo</strong>
-                </div>
-                <div class="col-4">
-                  <small class="text-muted d-block mb-1"
-                    ><i class="bi bi-bullseye text-primary"></i>
-                    Performance</small
-                  >
-                  <strong class="fs-5 text-dark">Top 10%</strong>
-                </div>
-              </div>
-            </div>
+  <section class="logos" data-r="logos">
+    <span class="logos-label" data-r="wrap">Empresas que estão tomando decisões mais conscientes com a Aurora</span>
+    <div class="logos-mask">
+      <div class="logos-track">
+        <div class="logos-item"><span data-icon="logo5" data-icon-color="rgb(114,114,114)"></span></div>
+        <div class="logos-item"><span data-icon="logo6" data-icon-color="rgb(114,114,114)"></span></div>
+        <div class="logos-item"><span data-icon="logo4" data-icon-color="rgb(114,114,114)"></span></div>
+        <div class="logos-item"><span data-icon="logo3" data-icon-color="rgb(114,114,114)"></span></div>
+        <div class="logos-item"><span data-icon="logo2" data-icon-color="rgb(114,114,114)"></span></div>
+        <div class="logos-item"><span data-icon="logo1" data-icon-color="rgb(114,114,114)"></span></div>
+        <div class="logos-item"><span data-icon="logo5" data-icon-color="rgb(114,114,114)"></span></div>
+        <div class="logos-item"><span data-icon="logo6" data-icon-color="rgb(114,114,114)"></span></div>
+        <div class="logos-item"><span data-icon="logo4" data-icon-color="rgb(114,114,114)"></span></div>
+        <div class="logos-item"><span data-icon="logo3" data-icon-color="rgb(114,114,114)"></span></div>
+        <div class="logos-item"><span data-icon="logo2" data-icon-color="rgb(114,114,114)"></span></div>
+        <div class="logos-item"><span data-icon="logo1" data-icon-color="rgb(114,114,114)"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo" data-r="demo">
+    <div class="demo-head">
+      <h2 class="demo-title" data-r="h2">Tudo que sua empresa precisa para uma gestão de pessoas mais inteligente.</h2>
+      <p class="demo-desc">A Aurora conecta os principais dados da jornada do colaborador em uma única plataforma, ajudando líderes e RH a identificar oportunidades antes que elas se tornem problemas.</p>
+    </div>
+    <div class="demo-frame-box" data-r="demo-frame">
+      <div class="demo-frame-glow">
+        <div class="demo-glow-pink"></div>
+        <div class="demo-glow-purple"></div>
+      </div>
+      <button type="button" class="play-btn js-open-video demo-play-btn" aria-label="Assistir demonstração de 2 minutos">
+        <svg class="play-icon-offset" width="14" height="18" viewBox="0 0 10.083 12.833" fill="rgb(27,21,35)"><path d="M 0 0 L 0 12.833 L 10.083 6.417 L 0 0 Z"></path></svg>
+      </button>
+    </div>
+  </section>
+
+  <section class="features" data-r="feat" id="produtos">
+    <div class="features-band" data-r="band">
+    <div class="features-decor-lines" data-r="deco"></div>
+    <div class="features-head" data-r="feat-head">
+      <h2 class="features-title" data-r="h2">Tudo que você precisa a Aurora oferece</h2>
+      <p class="features-desc" data-r="wrap">As funções pensadas para transformar os dados dos colaboradores em decisões de impacto.</p>
+    </div>
+    <svg class="features-decor-blob" data-r="deco" width="1604" height="1054" viewBox="0 0 1604 1054"><defs><linearGradient id="auroraBlob" x1="0" y1="0" x2="1" y2="0.18"><stop offset="-0.0226" stop-color="rgb(200,75,150)"></stop><stop offset="0.2912" stop-color="rgb(105,80,157)"></stop><stop offset="0.5581" stop-color="rgb(166,178,183)"></stop><stop offset="0.9392" stop-color="rgb(152,236,201)"></stop></linearGradient></defs><path fill="url(#auroraBlob)" d="M 24.38 0 C 24.38 0 322.34 261.629 655.16 215.081 C 987.98 168.533 1090.595 463.075 1311.436 463.075 C 1532.276 463.075 1506.479 469.258 1506.479 469.258 L 1604 934.566 C 1604 934.566 1567.948 941.113 1289.842 1034.724 C 1011.736 1128.335 689.17 850.573 448.485 850.573 C 207.8 850.573 0 1012.031 0 1012.031 L 24.38 0 Z"></path></svg>
+    <div class="features-decor-photo" data-r="deco"></div>
+
+    <div class="features-col-left" data-r="feat-col">
+      <div class="feat-card feature-card">
+        <div class="feature-card-icon-wrap">
+          <span class="feature-icon-a-pos" data-icon="ic-feat-a" data-icon-color="rgb(41,177,168)"></span>
+          <span class="feature-icon-b-pos" data-icon="ic-feat-b" data-icon-color="rgb(41,177,168)"></span>
+        </div>
+        <div class="feature-card-text">
+          <span class="feature-card-title">Gestão de Metas</span>
+          <span class="feature-card-body">Defina, acompanhe e avalie metas individuais e por área.</span>
+        </div>
+      </div>
+      <div class="feat-card feature-card">
+        <div class="feature-card-icon-wrap">
+          <span class="feature-icon-a-pos" data-icon="ic-feat-a" data-icon-color="rgb(41,177,168)"></span>
+          <span class="feature-icon-b-pos" data-icon="ic-feat-b" data-icon-color="rgb(41,177,168)"></span>
+        </div>
+        <div class="feature-card-text">
+          <span class="feature-card-title">Ciclo de Performance</span>
+          <span class="feature-card-body">Acompanhe a evolução de cada colaborador ao longo de ciclos estruturados.</span>
+        </div>
+      </div>
+      <div class="feat-card feature-card">
+        <div class="feature-card-icon-wrap">
+          <span class="feature-icon-a-pos" data-icon="ic-feat-a" data-icon-color="rgb(41,177,168)"></span>
+          <span class="feature-icon-b-pos" data-icon="ic-feat-b" data-icon-color="rgb(41,177,168)"></span>
+        </div>
+        <div class="feature-card-text">
+          <span class="feature-card-title">Avaliação de Valores</span>
+          <span class="feature-card-body">Meça o alinhamento dos colaboradores à cultura e aos valores da empresa.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-col-right" data-r="feat-col">
+      <div class="feat-card feature-card">
+        <div class="feature-card-icon-wrap">
+          <span class="feature-icon-a-pos" data-icon="ic-feat-a" data-icon-color="rgb(41,177,168)"></span>
+          <span class="feature-icon-b-pos" data-icon="ic-feat-b" data-icon-color="rgb(41,177,168)"></span>
+        </div>
+        <div class="feature-card-text">
+          <span class="feature-card-title">Planos de Ação</span>
+          <span class="feature-card-body">Transforme diagnósticos em planos de ação acompanháveis.</span>
+        </div>
+      </div>
+      <div class="feat-card feature-card">
+        <div class="feature-card-icon-wrap">
+          <span class="feature-icon-a-pos" data-icon="ic-feat-a" data-icon-color="rgb(41,177,168)"></span>
+          <span class="feature-icon-b-pos" data-icon="ic-feat-b" data-icon-color="rgb(41,177,168)"></span>
+        </div>
+        <div class="feature-card-text">
+          <span class="feature-card-title">Pesquisas Customizáveis</span>
+          <span class="feature-card-body">Crie pesquisas sob medida para as necessidades da sua operação.</span>
+        </div>
+      </div>
+      <div class="feat-card feature-card">
+        <div class="feature-card-icon-wrap">
+          <span class="feature-icon-a-pos" data-icon="ic-feat-a" data-icon-color="rgb(41,177,168)"></span>
+          <span class="feature-icon-b-pos" data-icon="ic-feat-b" data-icon-color="rgb(41,177,168)"></span>
+        </div>
+        <div class="feature-card-text">
+          <span class="feature-card-title">Pesquisa de Experiência</span>
+          <span class="feature-card-body">Mapeie a experiência dos colaboradores da sua empresa.</span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="boreal" data-r="boreal" id="boreal">
+    <div class="boreal-col" data-r="col-fw">
+      <div class="boreal-text-stack">
+        <div class="hero-copy-stack">
+          <span class="eyebrow-text" data-r="wrap">Conheça o chatbot Boreal ✦</span>
+          <h2 class="boreal-title" data-r="h2">Sua nova inteligência para entender melhor as pessoas.</h2>
+        </div>
+        <p class="boreal-desc" data-r="fw">O Boreal é a inteligência artificial da Aurora. Ele analisa informações sobre performance, feedbacks, experiência e comportamento para transformar dados complexos em insights claros e acionáveis.</p>
+        <span class="boreal-cta-label">Simule uma conversa agora</span>
+      </div>
+      <article class="boreal-mini-card">
+        <div class="boreal-mini-card-icon">
+          <span data-icon="ic-spark" data-icon-color="rgb(226,61,116)"></span>
+        </div>
+        <span class="boreal-mini-card-title">Chatbot Boreal</span>
+        <span class="boreal-mini-card-desc">IA que entrega insights acionáveis para a liderança decidir melhor.</span>
+      </article>
+    </div>
+
+    <div class="chat-widget" data-r="chat">
+      <div class="chat-header">
+        <span data-icon="icon-robot" data-icon-color="rgb(226,61,116)" data-icon-fills="rgb(226,61,116),rgb(255,255,255)"></span>
+        <div class="col-start">
+          <span class="chat-header-name">Boreal</span>
+          <div class="chat-header-status">
+            <span class="chat-status-dot"></span>
+            <span class="chat-status-text">Online agora</span>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="py-5" id="beneficios">
-      <div class="container text-center mb-5">
-        <h2 class="fs-2 fs-lg-1">Uma nova forma de liderar pessoas</h2>
-        <p class="text-muted mx-auto" style="max-width: 560px">
-          Abandone o achismo. Utilize tecnologia de ponta para entender, engajar
-          e reter os maiores talentos da sua organização.
-        </p>
+      <div class="chat-messages" id="chat-body">
+        <div class="chat-msg-row-bot">
+          <div class="chat-bubble-bot">Oi! Sou o Boreal da Aurora. Qual decisão você quer tomar sobre a colaboradora Maria da Silva?</div>
+        </div>
+        <div class="chat-msg-row-user">
+          <div class="chat-bubble-user">Estou pensando em demitir</div>
+        </div>
+        <div class="chat-msg-row-bot">
+          <div class="chat-bubble-bot">Antes de seguir com a demissão, vale considerar alguns dados:
+📊 Desempenho: queda de 18% nos últimos 3 meses, mas 92% das entregas anteriores estavam dentro do prazo.
+💰 Custo estimado do desligamento: R$ 18.500, considerando rescisão, encargos e custos de substituição.
+📈 Potencial de recuperação: colaboradores em situações semelhantes tiveram aumento médio de 25% na produtividade após um plano de desenvolvimento de 90 dias.
+💡 Recomendação: antes do desligamento, sugiro um Plano de Desenvolvimento de 90 dias, com metas e acompanhamento quinzenal.
+Quer que eu estruture o plano de desenvolvimento para a Maria?</div>
+        </div>
+        <div id="typing-indicator" class="hidden chat-typing">
+          <span class="chat-typing-dot-1"></span>
+          <span class="chat-typing-dot-2"></span>
+          <span class="chat-typing-dot-3"></span>
+        </div>
+        <div class="chat-quick-replies">
+          <button type="button" class="quick-reply js-quick-reply chat-quick-reply-btn" data-reply="Estruturar Plano de Desenvolvimento">Estruturar Plano de Desenvolvimento</button>
+          <button type="button" class="quick-reply js-quick-reply chat-quick-reply-btn" data-reply="Calcular custos de demissão">Calcular custos de demissão</button>
+        </div>
       </div>
-      <div class="container">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-          <!-- Feature 1 -->
-          <div class="col">
-            <div class="feature-card p-4 h-100 bg-white">
-              <div class="icon-box icon-box-blue">
-                <i class="bi bi-pie-chart"></i>
-              </div>
-              <h5 class="fw-bold fs-6">People Analytics</h5>
-              <p class="text-muted small mb-0">
-                Visualização estratégica de indicadores de pessoas com
-                dashboards interativos e personalizáveis.
-              </p>
-            </div>
-          </div>
-          <!-- Feature 2 -->
-          <div class="col">
-            <div class="feature-card p-4 h-100 bg-white">
-              <div class="icon-box icon-box-orange">
-                <i class="bi bi-exclamation-triangle"></i>
-              </div>
-              <h5 class="fw-bold fs-6">Predição de Rotatividade</h5>
-              <p class="text-muted small mb-0">
-                Antecipe riscos de desligamento antes que aconteçam com nossos
-                modelos preditivos avançados.
-              </p>
-            </div>
-          </div>
-          <!-- Feature 3 -->
-          <div class="col">
-            <div class="feature-card p-4 h-100 bg-white">
-              <div class="icon-box icon-box-purple">
-                <i class="bi bi-graph-up-arrow"></i>
-              </div>
-              <h5 class="fw-bold fs-6">Performance Insights</h5>
-              <p class="text-muted small mb-0">
-                Identifique talentos, mapeie sucessores e descubra oportunidades
-                de crescimento na sua equipe.
-              </p>
-            </div>
-          </div>
-          <!-- Feature 4 -->
-          <div class="col">
-            <div class="feature-card p-4 h-100 bg-white">
-              <div class="icon-box icon-box-pink">
-                <i class="bi bi-lightbulb"></i>
-              </div>
-              <h5 class="fw-bold fs-6">Recomendações Inteligentes</h5>
-              <p class="text-muted small mb-0">
-                Apoio guiado por IA na tomada de decisões de RH, removendo
-                viéses e focando em dados reais.
-              </p>
-            </div>
+
+      <form class="chat-form-bar" id="chat-form">
+        <input type="text" id="chat-input" class="input-focus-pink chat-input-field" placeholder="Conversar com o Boreal" aria-label="Conversar com o Boreal">
+        <button type="submit" class="send-btn chat-send-btn" aria-label="Enviar mensagem">
+          <span data-icon="ic-send" data-icon-color="rgb(255,255,255)"></span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section class="testimonials" data-r="tst">
+    <h2 class="testimonials-title" data-r="h2">Veja o que estão falando da Aurora</h2>
+    <div class="testimonials-grid" data-r="tst-grid">
+      <div data-r="tst-card" class="tst-card testimonial-card">
+        <div class="boreal-text-stack">
+          <span data-icon="logo4" data-icon-color="rgb(114,114,114)"></span>
+          <p class="testimonial-quote">“A Aurora mudou a forma como tomamos decisões sobre o nosso time. Hoje conseguimos transformar dados de pessoas em ações práticas, com muito mais segurança e agilidade.”</p>
+        </div>
+        <div class="hero-cta-row">
+          <div class="testimonial-avatar-1"></div>
+          <div class="testimonial-person">
+            <span class="testimonial-name" data-r="wrap">Mariana Costa</span>
+            <span class="testimonial-role" data-r="wrap">Head de Pessoas</span>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-5 bg-dark-brand text-white text-center">
-      <div class="container py-4">
-        <h2 class="mb-2 fs-2 fs-lg-1">Impacto real para sua empresa</h2>
-        <p class="text-white-50 mb-5 mx-auto" style="max-width: 560px">
-          Números que comprovam como a inteligência artificial da Aurora
-          transforma o departamento de Recursos Humanos em um parceiro de
-          negócios estratégico.
-        </p>
-        <div class="row g-4">
-          <div class="col-6 col-md-3">
-            <h2 class="stat-number text-gradient mb-1">35%</h2>
-            <p class="small text-white-50 mb-0">menos turnover</p>
-          </div>
-          <div class="col-6 col-md-3">
-            <h2 class="stat-number text-gradient mb-1">50%</h2>
-            <p class="small text-white-50 mb-0">mais agilidade em decisões</p>
-          </div>
-          <div class="col-6 col-md-3">
-            <h2 class="stat-number text-gradient mb-1">90%</h2>
-            <p class="small text-white-50 mb-0">de satisfação dos gestores</p>
-          </div>
-          <div class="col-6 col-md-3">
-            <h2 class="stat-number text-gradient mb-1">ROI</h2>
-            <p class="small text-white-50 mb-0">comprovado em retenção</p>
+      <div data-r="tst-card" class="tst-card testimonial-card">
+        <div class="boreal-text-stack">
+          <span data-icon="logo3" data-icon-color="rgb(114,114,114)"></span>
+          <p class="testimonial-quote">“Antes, muitas decisões eram baseadas em percepção. Com a Aurora, conseguimos enxergar os dados, entender os cenários e agir antes que os problemas cresçam.”</p>
+        </div>
+        <div class="hero-cta-row">
+          <div class="testimonial-avatar-2"></div>
+          <div class="testimonial-person">
+            <span class="testimonial-name" data-r="wrap">Rafael Mendes</span>
+            <span class="testimonial-role" data-r="wrap">Diretor de Operações</span>
           </div>
         </div>
       </div>
-    </section>
+      <div data-r="tst-card" class="tst-card testimonial-card">
+        <div class="boreal-text-stack">
+          <span data-icon="logo1" data-icon-color="rgb(114,114,114)"></span>
+          <p class="testimonial-quote">“Mais do que automatizar o RH, a Aurora nos ajudou a tomar decisões melhores sobre pessoas. Ganhamos velocidade, clareza e confiança para agir.”</p>
+        </div>
+        <div class="hero-cta-row">
+          <div class="testimonial-avatar-3"></div>
+          <div class="testimonial-person">
+            <span class="testimonial-name" data-r="wrap">Lucas Almeida</span>
+            <span class="testimonial-role" data-r="wrap">CEO</span>
+          </div>
+        </div>
+      </div>
+      <div data-r="tst-card" class="tst-card testimonial-card">
+        <div class="boreal-text-stack">
+          <span data-icon="logo2" data-icon-color="rgb(114,114,114)"></span>
+          <p class="testimonial-quote">“O Boreal virou um verdadeiro parceiro do nosso time de RH. Ele nos ajuda a identificar pontos de atenção e sugere caminhos que muitas vezes não estavam no nosso radar.”</p>
+        </div>
+        <div class="hero-cta-row">
+          <div class="testimonial-avatar-4"></div>
+          <div class="testimonial-person">
+            <span class="testimonial-name" data-r="wrap">Camila Rocha</span>
+            <span class="testimonial-role" data-r="wrap">HR Business Partner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Empresas / Testimonials Section -->
-    <section class="py-5" id="clientes">
-      <div class="container py-3 py-lg-5 text-center">
-        <h2 class="mb-2 fs-2 fs-lg-1">Empresas que confiam na Aurora</h2>
-        <p class="text-muted mb-5 mx-auto" style="max-width: 560px">
-          Veja como organizações líderes estão transformando sua gestão de
-          pessoas e colhendo resultados extraordinários.
-        </p>
+  <section class="plans" data-r="plan" id="planos">
+    <div class="plans-decor" data-r="deco">
+      <div class="plans-decor-green"></div>
+      <div class="plans-decor-red"></div>
+    </div>
+    <div class="plans-inner" data-r="plan-inner">
+      <div class="plans-head">
+        <div class="plans-badge">
+          <svg class="no-shrink" width="18.667" height="17.778" viewBox="0 0 28.444 28.444" fill="rgb(255,255,255)"><path d="M 14.222 0 C 14.437 7.764 20.68 14.008 28.444 14.222 C 20.68 14.437 14.437 20.68 14.222 28.444 C 14.008 20.68 7.764 14.437 0 14.222 C 7.764 14.008 14.008 7.764 14.222 0 Z"></path></svg>
+          <span class="plans-badge-text">Planos e preços</span>
+        </div>
+        <h2 class="plans-title" data-r="plan-h2">Escolha o plano da sua operação</h2>
+        <p class="plans-desc">Preço por colaborador, com faixas por tamanho de empresa.</p>
+        <div class="plans-toggle-track">
+          <button class="plans-tab-mensal" type="button" id="tab-mensal">Mensal</button>
+          <button class="plans-tab-anual" type="button" id="tab-anual">
+            Anual
+            <span class="plans-tab-badge">1 mês gratuito</span>
+          </button>
+        </div>
+      </div>
 
-        <!-- Logos placeholders -->
-        <div
-          class="d-flex justify-content-center align-items-center gap-4 flex-wrap mb-5"
-        >
-          <span class="logo-placeholder"
-            ><span class="logo-dot"></span> TechNova</span
-          >
-          <span class="logo-placeholder"
-            ><span class="logo-dot"></span> Lumina</span
-          >
-          <span class="logo-placeholder"
-            ><span class="logo-dot"></span> Vértice</span
-          >
-          <span class="logo-placeholder"
-            ><span class="logo-dot"></span> Stellar</span
-          >
-          <span class="logo-placeholder"
-            ><span class="logo-dot"></span> NexoCorp</span
-          >
+      <div class="plans-row" data-r="plan-row">
+        <div class="plan-card-basic">
+          <div class="plan-card-head">
+            <div class="plan-card-icon">
+              <svg width="28.444" height="28.444" viewBox="0 0 28.444 28.444" fill="rgb(255,255,255)"><path d="M 14.222 0 C 14.437 7.764 20.68 14.008 28.444 14.222 C 20.68 14.437 14.437 20.68 14.222 28.444 C 14.008 20.68 7.764 14.437 0 14.222 C 7.764 14.008 14.008 7.764 14.222 0 Z"></path></svg>
+            </div>
+            <div class="plan-card-title-stack">
+              <span class="plan-card-name">Basico</span>
+              <div class="plan-card-price-row">
+                <span class="plan-card-price" id="price-basic">R$ 30,00</span>
+                <span class="price-period plan-card-price-period">/por mês</span>
+              </div>
+              <span class="plan-card-caption">Por colaborador</span>
+            </div>
+          </div>
+          <div class="plan-card-body">
+            <div class="plan-card-items">
+              <div class="plan-card-item">
+                <span data-icon="ic-check-circle" data-icon-color="rgb(119,50,255)"></span>
+                <span class="plan-card-item-text">Visão geral da empresa</span>
+              </div>
+              <div class="plan-card-item">
+                <span data-icon="ic-check-circle" data-icon-color="rgb(119,50,255)"></span>
+                <span class="plan-card-item-text">Funil de contratação</span>
+              </div>
+              <div class="plan-card-item">
+                <span data-icon="ic-check-circle" data-icon-color="rgb(119,50,255)"></span>
+                <span class="plan-card-item-text">Mapa de colaboradores</span>
+              </div>
+              <div class="plan-card-item">
+                <span data-icon="ic-check-circle" data-icon-color="rgb(119,50,255)"></span>
+                <span class="plan-card-item-text">Lowlights e Highlights</span>
+              </div>
+            </div>
+            <a data-r="btn-fw" href="#contato" data-nav class="btn-plan-dark plan-card-cta-basic">Começar agora</a>
+          </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-3 g-4 text-start">
-          <div class="col">
-            <div class="testimonial-card p-4 h-100 bg-white">
-              <i class="bi bi-quote fs-1 text-primary opacity-25"></i>
-              <p class="text-muted small">
-                A Aurora nos ajudou a identificar talentos estratégicos e
-                reduzir significativamente as perdas de profissionais-chave que
-                nem sabíamos que estavam insatisfeitos.
-              </p>
-              <div class="d-flex align-items-center mt-4">
-                <img
-                  src="assets/images/img-empresas-ceo-1.png"
-                  alt="Imagem avatar do lider Roberto Almeida"
-                  class="testimonial-avatar me-3"
-                />
-                <div>
-                  <h6 class="mb-0 fw-bold fs-6">Roberto Almeida</h6>
-                  <small class="text-muted">CHRO, TechNova Solutions</small>
+        <div class="plan-card-boreal">
+          <div class="plan-card-boreal-decor">
+            <svg class="plan-card-boreal-decor-a" width="299.111" height="299.111" viewBox="0 0 299.111 299.111"><defs><linearGradient id="auroraPlanA" x1="1" y1="0" x2="0" y2="1"><stop offset="0.3551" stop-color="rgb(8,124,116)"></stop><stop offset="0.7652" stop-color="rgb(140,149,255)"></stop></linearGradient></defs><path fill="url(#auroraPlanA)" d="M 209.333 299.111 L 0 113.333 L 0 0 L 172.444 0 L 299.111 299.111 L 209.333 299.111 Z"></path></svg>
+            <svg class="plan-card-boreal-decor-b" width="243.556" height="304.889" viewBox="0 0 243.556 304.889"><defs><linearGradient id="auroraPlanB" x1="0" y1="1" x2="0.88" y2="0"><stop offset="0.4102" stop-color="rgb(4,150,140)"></stop><stop offset="0.8766" stop-color="rgb(105,80,157)"></stop></linearGradient></defs><path fill="url(#auroraPlanB)" d="M 145.326 304.889 L 0 0 L 243.556 0 L 243.556 304.889 L 145.326 304.889 Z"></path></svg>
+          </div>
+          <div class="plan-card-boreal-head">
+            <div class="plan-card-boreal-icon">
+              <span data-icon="ic-union" data-icon-color="rgb(255,255,255)"></span>
+            </div>
+            <div class="plan-card-title-stack">
+              <span class="plan-card-boreal-name">Boreal</span>
+              <div class="plan-card-price-row">
+                <span class="plan-card-boreal-price" id="price-boreal">R$ 49,99</span>
+                <span class="price-period plan-card-boreal-price-period">/por mês</span>
+              </div>
+              <span class="plan-card-boreal-caption">Por colaborador</span>
+            </div>
+          </div>
+          <div class="plan-card-boreal-body">
+            <div class="plan-card-items">
+              <div class="plan-card-item">
+                <span data-icon="ic-check-circle" data-icon-color="rgb(252,252,253)"></span>
+                <span class="plan-card-boreal-item-bold">Inteligência Artificial</span>
+              </div>
+              <div class="plan-card-item">
+                <span data-icon="ic-check-circle" data-icon-color="rgb(252,252,253)"></span>
+                <span class="plan-card-boreal-item-text">Plano de Ação — Individual</span>
+              </div>
+              <div class="plan-card-item">
+                <span data-icon="ic-check-circle" data-icon-color="rgb(252,252,253)"></span>
+                <span class="plan-card-boreal-item-text">Visão geral da empresa</span>
+              </div>
+              <div class="plan-card-item">
+                <span data-icon="ic-check-circle" data-icon-color="rgb(252,252,253)"></span>
+                <span class="plan-card-boreal-item-text">Funil de contratação</span>
+              </div>
+              <div class="plan-card-item">
+                <span data-icon="ic-check-circle" data-icon-color="rgb(252,252,253)"></span>
+                <span class="plan-card-boreal-item-text">Mapa de colaboradores</span>
+              </div>
+              <div class="plan-card-item">
+                <span data-icon="ic-check-circle" data-icon-color="rgb(252,252,253)"></span>
+                <span class="plan-card-boreal-item-text">Lowlights e Highlights</span>
+              </div>
+            </div>
+            <a data-r="btn-fw" href="#contato" data-nav class="btn-plan-light plan-card-cta-boreal">Assinar Boreal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" data-r="ct" id="contato">
+    <div class="contact-decor" data-r="deco">
+      <div class="contact-decor-pink"></div>
+      <div class="contact-decor-purple"></div>
+      <div class="contact-decor-teal"></div>
+    </div>
+    <div class="contact-inner">
+      <div class="contact-head">
+        <h2 class="contact-title" data-r="h2">Decisões melhores começam com uma visão mais completa sobre as pessoas.</h2>
+        <p class="contact-desc">Conheça a Aurora e transforme a gestão de pessoas da sua empresa.</p>
+      </div>
+      <div class="contact-form-wrap" data-r="ct-form">
+        <div class="contact-steps" data-r="ct-steps">
+          <div class="contact-step-item" id="step-item-1">
+            <span class="contact-step-badge" id="step-badge-1">1</span>
+            <span class="contact-step-label" id="step-label-1">Seus dados</span>
+          </div>
+          <div class="contact-step-item" id="step-item-2">
+            <span class="contact-step-badge" id="step-badge-2">2</span>
+            <span class="contact-step-label" id="step-label-2">Contato</span>
+          </div>
+          <div class="contact-step-item" id="step-item-3">
+            <span class="contact-step-badge" id="step-badge-3">3</span>
+            <span class="contact-step-label" id="step-label-3">Sua operação</span>
+          </div>
+          <div class="contact-step-item" id="step-item-4">
+            <span class="contact-step-badge" id="step-badge-4">4</span>
+            <span class="contact-step-label" id="step-label-4">Agenda</span>
+          </div>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <div id="form-step-1">
+            <div class="contact-form-row" data-r="ct-row">
+              <label class="contact-field" data-r="fw">
+                <span class="contact-field-label">Nome</span>
+                <input type="text" id="f-nome" name="nome" placeholder="Seu nome" class="input-focus-pink contact-input" data-r="fw">
+              </label>
+              <label class="contact-field-wide" data-r="fw">
+                <span class="contact-field-label">Empresa</span>
+                <input type="text" id="f-empresa" name="empresa" placeholder="Nome da empresa" class="input-focus-pink contact-input" data-r="fw">
+              </label>
+            </div>
+          </div>
+          <div id="form-step-2" class="hidden">
+            <div class="contact-form-row" data-r="ct-row">
+              <label class="contact-field" data-r="fw">
+                <span class="contact-field-label">E-mail</span>
+                <input type="email" id="f-email" name="email" placeholder="voce@empresa.com.br" class="input-focus-pink contact-input" data-r="fw">
+              </label>
+              <label class="contact-field-wide-2" data-r="fw">
+                <span class="contact-field-label">Telefone</span>
+                <input type="tel" id="f-telefone" name="telefone" placeholder="(11) 90000-0000" class="input-focus-pink contact-input" data-r="fw">
+              </label>
+            </div>
+          </div>
+          <div id="form-step-3" class="hidden">
+            <div class="contact-step3-stack">
+              <label class="contact-field-simple">
+                <span class="contact-field-label">Quantidade de colaboradores</span>
+                <select class="contact-select" id="f-colaboradores" name="colaboradores">
+                  <option value="">Selecione uma faixa</option>
+                  <option value="1-50">1 a 50</option>
+                  <option value="51-200">51 a 200</option>
+                  <option value="201-500">201 a 500</option>
+                  <option value="501-1000">501 a 1.000</option>
+                  <option value="1000+">Mais de 1.000</option>
+                </select>
+              </label>
+              <label class="contact-field-simple">
+                <span class="contact-field-label">Mensagem</span>
+                <textarea id="f-mensagem" name="mensagem" placeholder="Escreva sua mensagem" class="input-focus-pink contact-textarea"></textarea>
+              </label>
+            </div>
+          </div>
+          <div id="form-step-4" class="hidden">
+            <div class="schedule-card">
+              <div class="schedule-card-head">
+                <span class="schedule-card-title">Agende sua reunião</span>
+                <span class="schedule-card-meta">30 min · Google Meet</span>
+              </div>
+              <div class="schedule-columns" data-r="cal-cols">
+                <div class="calendar-box" data-r="fw">
+                  <div class="schedule-card-head">
+                    <button type="button" id="cal-prev" class="cal-nav-btn calendar-nav-prev" aria-label="Mês anterior">‹</button>
+                    <span class="calendar-month-label" id="cal-month"></span>
+                    <button type="button" id="cal-next" class="cal-nav-btn calendar-nav-next" aria-label="Próximo mês">›</button>
+                  </div>
+                  <div class="calendar-grid-7">
+                    <span class="calendar-weekday">D</span>
+                    <span class="calendar-weekday">S</span>
+                    <span class="calendar-weekday">T</span>
+                    <span class="calendar-weekday">Q</span>
+                    <span class="calendar-weekday">Q</span>
+                    <span class="calendar-weekday">S</span>
+                    <span class="calendar-weekday">S</span>
+                  </div>
+                  <div class="calendar-grid-7" id="cal-days"></div>
+                </div>
+                <div class="calendar-box" data-r="fw">
+                  <span class="calendar-slots-label">Horários disponíveis</span>
+                  <div class="calendar-slots-grid" id="cal-slots"></div>
                 </div>
               </div>
+              <span class="calendar-summary" id="cal-summary"></span>
             </div>
           </div>
-          <div class="col">
-            <div class="testimonial-card p-4 h-100 bg-white">
-              <i class="bi bi-quote fs-1 text-primary opacity-25"></i>
-              <p class="text-muted small">
-                Substituímos três ferramentas desconexas pela Aurora. A visão
-                unificada de People Analytics transformou a forma como
-                apresentamos resultados para a diretoria.
-              </p>
-              <div class="d-flex align-items-center mt-4">
-                <img
-                  src="assets/images/img-empresas-ceo-2.png"
-                  alt="Imagem avatar da lider Mariana Costa"
-                  class="testimonial-avatar me-3"
-                />
-                <div>
-                  <h6 class="mb-0 fw-bold fs-6">Mariana Costa</h6>
-                  <small class="text-muted"
-                    >Diretora de Talentos, Lumina Financial</small
-                  >
-                </div>
-              </div>
-            </div>
+          <div class="contact-actions">
+            <button type="button" id="btn-back" class="btn-outline-white hidden contact-btn-back">Voltar</button>
+            <button type="button" id="btn-next" class="btn-cta-pink contact-btn-primary">Continuar</button>
+            <button type="submit" id="btn-submit" class="btn-cta-pink hidden contact-btn-primary">Enviar mensagem</button>
           </div>
-          <div class="col">
-            <div class="testimonial-card p-4 h-100 bg-white">
-              <i class="bi bi-quote fs-1 text-primary opacity-25"></i>
-              <p class="text-muted small">
-                O módulo de performance mudou nossos ciclos de avaliação. É
-                incrível como a IA sugere os próximos passos da carreira de
-                forma tão assertiva.
-              </p>
-              <div class="d-flex align-items-center mt-4">
-                <img
-                  src="assets/images/img-empresas-ceo-3.png"
-                  alt="Imagem avatar do lider Carlos Ferreira"
-                  class="testimonial-avatar me-3"
-                />
-                <div>
-                  <h6 class="mb-0 fw-bold fs-6">Carlos Ferreira</h6>
-                  <small class="text-muted">CEO, Grupo Vértice</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <div class="contact-form-msg" id="form-msg"></div>
+        </form>
       </div>
-    </section>
 
-    <!-- Pricing Section -->
-    <section class="py-5 bg-light" id="planos">
-      <div class="container py-3 py-lg-5">
-        <div class="text-center mb-5">
-          <h2 class="fs-2 fs-lg-1">
-            Escolha o plano ideal para sua organização
-          </h2>
-          <p class="text-muted mx-auto" style="max-width: 560px">
-            Soluções escaláveis que se adaptam ao tamanho e maturidade do seu
-            time de gestão de pessoas.
-          </p>
-        </div>
+    </div>
+  </section>
 
-        <div class="row justify-content-center g-4">
-          <!-- Plano Rosa -->
-          <div class="col-lg-5 col-md-8">
-            <div class="pricing-card h-100">
-              <h4 class="fw-bold">Plano Rosa</h4>
-              <p class="text-muted small">
-                Para equipes estruturadas seu RH estratégico.
-              </p>
-              <h2 class="display-6 fw-bold mb-4">
-                R$ 1.500<span class="fs-6 text-muted fw-normal">/mês</span>
-              </h2>
-              <ul class="list-unstyled mb-5">
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-pink me-2 mt-1"></i>
-                  <span class="small">Dashboard estratégico unificado</span>
-                </li>
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-pink me-2 mt-1"></i>
-                  <span class="small">Relatórios básicos de turnover</span>
-                </li>
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-pink me-2 mt-1"></i>
-                  <span class="small">Exportação em PDF e Excel</span>
-                </li>
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-pink me-2 mt-1"></i>
-                  <span class="small">Acesso para até 3 gestores de RH</span>
-                </li>
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-pink me-2 mt-1"></i>
-                  <span class="small">Suporte por e-mail (48h)</span>
-                </li>
-              </ul>
-              <a
-                href="#lead-form"
-                class="btn btn-outline-dark w-100 rounded-pill py-2"
-              >
-                Falar com consultor
-              </a>
-            </div>
-          </div>
-
-          <!-- Plano Violeta -->
-          <div class="col-lg-5 col-md-8">
-            <div class="pricing-pro h-100">
-              <h4 class="fw-bold text-white">Plano Violeta</h4>
-              <p class="text-white-50 small">
-                A solução completa com Inteligência Artificial para líderes.
-              </p>
-              <h2 class="display-6 fw-bold mb-4 text-white">Sob consulta</h2>
-              <ul class="list-unstyled mb-5">
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-white me-2 mt-1"></i>
-                  <span class="small text-white"
-                    >Todos os recursos do Plano Rosa</span
-                  >
-                </li>
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-white me-2 mt-1"></i>
-                  <span class="small text-white"
-                    >IA preditiva para risco de desligamento</span
-                  >
-                </li>
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-white me-2 mt-1"></i>
-                  <span class="small text-white"
-                    >Insights avançados de performance</span
-                  >
-                </li>
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-white me-2 mt-1"></i>
-                  <span class="small text-white"
-                    >Recomendações automáticas de carreira</span
-                  >
-                </li>
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-white me-2 mt-1"></i>
-                  <span class="small text-white"
-                    >Integrações corporativas (SAP, Workday, etc.)</span
-                  >
-                </li>
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-white me-2 mt-1"></i>
-                  <span class="small text-white"
-                    >Consultoria especializada mensal</span
-                  >
-                </li>
-                <li class="mb-3 d-flex">
-                  <i class="bi bi-check-circle-fill text-white me-2 mt-1"></i>
-                  <span class="small text-white">Suporte prioritário 24/7</span>
-                </li>
-              </ul>
-              <a
-                href="#lead-form"
-                class="btn btn-gradient w-100 rounded-pill py-2"
-              >
-                Solicitar Demonstração
-              </a>
-            </div>
-          </div>
-        </div>
+  <footer class="footer" data-r="ftr">
+    <div class="footer-row-top" data-r="ftr-row">
+      <a class="contact-step-item" href="#top" data-nav>
+        <span class="footer-logo-mark"></span>
+        <span class="footer-logo-text">Aurora</span>
+      </a>
+      <nav class="footer-nav" data-r="ftr-nav">
+        <a href="#produtos" data-nav class="nav-link footer-nav-link">Produtos</a>
+        <a href="#boreal" data-nav class="nav-link footer-nav-link">Simulador</a>
+        <a href="#planos" data-nav class="nav-link footer-nav-link">Planos</a>
+        <a href="#contato" data-nav class="nav-link footer-nav-link">Contato</a>
+      </nav>
+      <div class="hero-cta-row">
+        <a href="#" aria-label="Aurora no Instagram" class="social-icon social-icon-circle">
+          <svg class="icon-block" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="rgb(132,123,140)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="0.6" y="0.6" width="10.8" height="10.8" rx="3.2"></rect><circle cx="6" cy="6" r="2.55"></circle><circle cx="9.05" cy="2.95" r="0.55" fill="rgb(132,123,140)" stroke="none"></circle></svg>
+        </a>
+        <a href="#" aria-label="Aurora no LinkedIn" class="social-icon social-icon-circle-relative">
+          <span class="social-li-icon-a" data-icon="ic-li-a" data-icon-color="rgb(132,123,140)"></span>
+          <span class="social-li-icon-b" data-icon="ic-li-b" data-icon-color="rgb(132,123,140)"></span>
+        </a>
+        <a href="#" aria-label="Aurora no X" class="social-icon social-icon-circle">
+          <svg width="11" height="11" viewBox="-1 -1 12.667 12.667" stroke="rgb(132,123,140)" stroke-width="1.2"><line x1="0" y1="0" x2="10.667" y2="10.667"></line><line x1="10.667" y1="0" x2="0" y2="10.667"></line></svg>
+        </a>
       </div>
-    </section>
-
-    <!-- Lead Capture Section -->
-    <section id="lead-form" class="py-5">
-      <div class="container py-3 py-lg-5">
-        <div class="row align-items-center">
-          <div class="col-lg-5 mb-5 mb-lg-0">
-            <span
-              class="badge bg-light text-primary border rounded-pill mb-3 px-3 py-2" style="color: #7008e7 !important;"
-            >
-              Fale com um especialista
-            </span>
-            <h2 class="fw-bold mb-4 fs-2 fs-lg-1">
-              Pronto para transformar sua gestão de pessoas?
-            </h2>
-            <p class="text-muted mb-4">
-              Preencha o formulário para agendar uma demonstração personalizada
-              da Aurora. Descubra como nossa plataforma pode se adaptar aos
-              desafios específicos da sua empresa.
-            </p>
-
-            <div class="d-flex mb-3 gap-3">
-              <div class="benefit-icon-box bg-success bg-opacity-10">
-                <i class="bi bi-display text-success"></i>
-              </div>
-              <div>
-                <h6 class="fw-bold mb-1">Demo Personalizada</h6>
-                <p class="small text-muted mb-0">
-                  Conheça a plataforma na prática com dados simulados do seu
-                  setor.
-                </p>
-              </div>
-            </div>
-            <div class="d-flex gap-3">
-              <div class="benefit-icon-box bg-primary bg-opacity-10">
-                <i class="bi bi-headset text-primary"></i>
-              </div>
-              <div>
-                <h6 class="fw-bold mb-1">Consultoria Gratuita</h6>
-                <p class="small text-muted mb-0">
-                  Nossos especialistas ajudarão a mapear seus principais
-                  desafios de RH.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 offset-lg-1">
-            <div class="form-container">
-              <h4 class="fw-bold mb-4">Solicite uma demonstração</h4>
-
-              <!-- FORMULÁRIO DE CAPTURA DE LEAD -->
-              <form id="leadConverterForm" novalidate>
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <label class="form-label small fw-medium" for="leadName"
-                      >Nome completo *</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="leadName"
-                      minlength="5"
-                      maxlength="50"
-                      required
-                      placeholder="João Silva"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label small fw-medium" for="leadCompany"
-                      >Empresa *</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="leadCompany"
-                      required
-                      placeholder="Nome da empresa"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label small fw-medium" for="leadRole"
-                      >Cargo *</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="leadRole"
-                      required
-                      placeholder="Ex: Diretor de RH"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label small fw-medium" for="leadEmail"
-                      >E-mail corporativo *</label
-                    >
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="leadEmail"
-                      maxlength="50"
-                      required
-                      placeholder="voce@empresa.com.br"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label small fw-medium" for="leadPhone"
-                      >Telefone</label
-                    >
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="leadPhone"
-                      placeholder="(00) 00000-0000"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label
-                      class="form-label small fw-medium"
-                      for="leadCompanySize"
-                      >Número de colaboradores *</label
-                    >
-                    <select class="form-select" id="leadCompanySize" required>
-                      <option value="" disabled selected>Selecione...</option>
-                      <option value="1-50">1 a 50 funcionários</option>
-                      <option value="51-200">51 a 200 funcionários</option>
-                      <option value="201-500">201 a 500 funcionários</option>
-                      <option value="500+">Mais de 500 funcionários</option>
-                    </select>
-                  </div>
-                  <div class="col-12">
-                    <label class="form-label small fw-medium" for="leadMessage"
-                      >Como podemos ajudar? (Opcional)</label
-                    >
-                    <textarea
-                      class="form-control"
-                      id="leadMessage"
-                      rows="3"
-                      placeholder="Quais são os principais desafios de RH que você quer resolver?"
-                    ></textarea>
-                  </div>
-                  <div class="col-12 mt-4">
-                    <button
-                      type="submit"
-                      class="btn btn-dark-brand w-100 py-3 rounded-3"
-                      id="btnSubmitForm"
-                    >
-                      Quero conhecer a Aurora
-                    </button>
-                  </div>
-                  <div class="col-12 text-center mt-3">
-                    <small class="text-muted">
-                      Ao enviar este formulário, você concorda com nossa
-                      <a href="#" class="text-decoration-underline"
-                        >Política de Privacidade</a
-                      >.
-                    </small>
-                  </div>
-                </div>
-
-                <!-- Alerta de Sucesso -->
-                <div
-                  id="successMessage"
-                  class="alert alert-success mt-3 d-none text-center"
-                  role="alert"
-                >
-                  <i class="bi bi-check-circle-fill me-2"></i> Solicitação
-                  enviada com sucesso! Entraremos em contato em breve.
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+    </div>
+    <div class="footer-row-bottom" data-r="ftr-row">
+      <span class="footer-copyright">© 2026 Aurora Tecnologia Financeira Ltda.</span>
+      <div class="footer-legal" data-r="ftr-legal">
+        <a href="#" class="nav-link footer-copyright">Política de privacidade</a>
+        <a href="#" class="nav-link footer-copyright">Termos de uso</a>
+        <a href="#" class="nav-link footer-copyright">Cookies</a>
+        <a href="mailto:contato@usearora.com.br" class="nav-link footer-copyright">contato@usearora.com.br</a>
       </div>
-    </section>
+    </div>
+  </footer>
+</div>
 
-    <!-- FAQ Section -->
-    <section class="py-5 bg-light">
-      <div class="container py-3 py-lg-5" style="max-width: 800px">
-        <div class="text-center mb-5">
-          <h2 class="fw-bold fs-2 fs-lg-1">Perguntas Frequentes</h2>
-          <p class="text-muted">
-            Tudo o que você precisa saber sobre a nossa plataforma.
-          </p>
-        </div>
+<div id="video-modal" class="hidden video-modal-overlay">
+  <div class="video-modal-box">
+    <div class="video-modal-tint"></div>
+    <div class="video-modal-text">
+      <div class="video-modal-title">Demonstração de 2 minutos</div>
+      <div class="video-modal-subtitle">O vídeo entra aqui quando você enviar o arquivo.</div>
+    </div>
+    <button type="button" class="js-close-video video-modal-close" aria-label="Fechar">×</button>
+  </div>
+</div>
 
-        <div class="accordion" id="accordionFAQ">
-          <div class="accordion-item mb-3 shadow-sm">
-            <h2 class="accordion-header">
-              <button
-                class="accordion-button"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#faq1"
-                aria-expanded="true"
-                aria-controls="faq1"
-              >
-                Meus dados de RH estarão seguros?
-              </button>
-            </h2>
-            <div
-              id="faq1"
-              class="accordion-collapse collapse show"
-              data-bs-parent="#accordionFAQ"
-            >
-              <div class="accordion-body text-muted">
-                Sim, somos 100% aderentes à Lei Geral de Proteção de Dados
-                (LGPD) e seguimos boas práticas de segurança da informação em
-                toda a nossa infraestrutura.
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item mb-3 shadow-sm">
-            <h2 class="accordion-header">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#faq2"
-                aria-expanded="false"
-                aria-controls="faq2"
-              >
-                Como funciona a implementação da Aurora?
-              </button>
-            </h2>
-            <div
-              id="faq2"
-              class="accordion-collapse collapse"
-              data-bs-parent="#accordionFAQ"
-            >
-              <div class="accordion-body text-muted">
-                A Aurora possui APIs nativas e integrações prontas com os
-                principais sistemas de RH do mercado. O processo é feito de
-                forma assistida pelo nosso time de implementação, com prazos que
-                variam conforme o plano escolhido.
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item mb-3 shadow-sm">
-            <h2 class="accordion-header">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#faq3"
-                aria-expanded="false"
-                aria-controls="faq3"
-              >
-                A Aurora se integra com outras ferramentas?
-              </button>
-            </h2>
-            <div
-              id="faq3"
-              class="accordion-collapse collapse"
-              data-bs-parent="#accordionFAQ"
-            >
-              <div class="accordion-body text-muted">
-                Sim. Oferecemos integrações nativas com os principais sistemas
-                de folha de pagamento e ERPs do mercado, além de uma API aberta
-                para conexões personalizadas.
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item mb-3 shadow-sm">
-            <h2 class="accordion-header">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#faq4"
-                aria-expanded="false"
-                aria-controls="faq4"
-              >
-                Como funciona o suporte técnico?
-              </button>
-            </h2>
-            <div
-              id="faq4"
-              class="accordion-collapse collapse"
-              data-bs-parent="#accordionFAQ"
-            >
-              <div class="accordion-body text-muted">
-                Todos os planos contam com suporte por e-mail e chat. O Plano
-                Violeta conta ainda com um CSM dedicado e atendimento
-                prioritário 24/7.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p class="text-center text-muted mt-5 mb-0">
-          Ainda tem dúvidas?
-          <a
-            href="#lead-form"
-            class="fw-bold text-decoration-none text-gradient"
-            >Fale com nosso time</a
-          >
-        </p>
-      </div>
-    </section>
-
-    <!--Footer -->
-    <footer class="bg-dark-brand text-white py-5">
-      <div class="container pt-4">
-        <div class="row gy-4">
-          <div class="col-lg-4">
-            <a
-              class="navbar-brand fw-bold d-flex align-items-center gap-2 text-white mb-3"
-              href="#"
-            >
-              <img
-                src="assets/images/img-logo-aurora.png"
-                alt="Logo da Aurora"
-                class="brand-logo-img"
-              />
-              Aurora
-            </a>
-            <p class="text-white-50 small mb-4">
-              Plataforma de inteligência para gestão estratégica de pessoas.
-              Transformando dados em decisões conscientes.
-            </p>
-            <div class="d-flex gap-3">
-              <a href="#" class="text-white-50 text-decoration-none"
-                ><i class="bi bi-linkedin fs-5"></i
-              ></a>
-              <a href="#" class="text-white-50 text-decoration-none"
-                ><i class="bi bi-instagram fs-5"></i
-              ></a>
-              <a href="#" class="text-white-50 text-decoration-none"
-                ><i class="bi bi-twitter-x fs-5"></i
-              ></a>
-            </div>
-          </div>
-          <div class="col-lg-2 col-6">
-            <h6 class="fw-bold mb-3">Plataforma</h6>
-            <ul class="list-unstyled small text-white-50 lh-lg">
-              <li>
-                <a href="#beneficios" class="text-white-50 text-decoration-none"
-                  >People Analytics</a
-                >
-              </li>
-              <li>
-                <a href="#beneficios" class="text-white-50 text-decoration-none"
-                  >Predição de Rotatividade</a
-                >
-              </li>
-              <li>
-                <a href="#beneficios" class="text-white-50 text-decoration-none"
-                  >Performance Insights</a
-                >
-              </li>
-              <li>
-                <a href="#planos" class="text-white-50 text-decoration-none"
-                  >Planos e Preços</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-6">
-            <h6 class="fw-bold mb-3">Empresa</h6>
-            <ul class="list-unstyled small text-white-50 lh-lg">
-              <li>
-                <a href="#" class="text-white-50 text-decoration-none"
-                  >Sobre nós</a
-                >
-              </li>
-              <li>
-                <a href="#clientes" class="text-white-50 text-decoration-none"
-                  >Clientes</a
-                >
-              </li>
-              <li>
-                <a href="#" class="text-white-50 text-decoration-none"
-                  >Carreiras</a
-                >
-              </li>
-              <li>
-                <a href="#contato" class="text-white-50 text-decoration-none"
-                  >Contato</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-4">
-            <h6 class="fw-bold mb-3" id="contato">Contato Comercial</h6>
-            <ul class="list-unstyled small text-white-50 lh-lg">
-              <li>
-                <i class="bi bi-envelope me-2"></i> contato@aurorapro.com.br
-              </li>
-              <li><i class="bi bi-telephone me-2"></i> +55 (11) 4000-0000</li>
-              <li>
-                <a
-                  href="#lead-form"
-                  class="text-decoration-underline text-white-50"
-                >
-                  Agendar demonstração <i class="bi bi-arrow-right"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div
-          class="border-top border-secondary mt-5 pt-4 d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 text-white-50 small"
-        >
-          <p class="mb-0 text-center">
-            &copy; 2026 Aurora. Todos os direitos reservados.
-          </p>
-          <div class="d-flex gap-3">
-            <a href="#" class="text-white-50 text-decoration-none"
-              >Política de Privacidade</a
-            >
-            <a href="#" class="text-white-50 text-decoration-none"
-              >Termos de Uso</a
-            >
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Bootstrap Script -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- Máscara de telefone -->
-    <script src="https://unpkg.com/imask"></script>
-    <script src="assets/js/tel.mask.js"></script>
-
-    <!-- Script de Conversão de Lead -->
-    <script>
-      document
-        .getElementById("leadConverterForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-
-          const btnSubmit = document.getElementById("btnSubmitForm");
-          const originalBtnText = btnSubmit.innerHTML;
-          btnSubmit.innerHTML =
-            '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
-          btnSubmit.disabled = true;
-
-          const leadData = {
-            nome: document.getElementById("leadName").value,
-            empresa: document.getElementById("leadCompany").value,
-            cargo: document.getElementById("leadRole").value,
-            email: document.getElementById("leadEmail").value,
-            telefone: document.getElementById("leadPhone").value,
-            tamanho_empresa: document.getElementById("leadCompanySize").value,
-            mensagem: document.getElementById("leadMessage").value,
-          };
-
-          setTimeout(() => {
-            console.log("Novo Lead Capturado:", leadData);
-
-            document
-              .getElementById("successMessage")
-              .classList.remove("d-none");
-            document.getElementById("leadConverterForm").reset();
-            btnSubmit.innerHTML = originalBtnText;
-            btnSubmit.disabled = false;
-
-            setTimeout(() => {
-              document.getElementById("successMessage").classList.add("d-none");
-            }, 5000);
-          }, 1500);
-        });
-    </script>
-  </body>
+<script type="module" src="script.js"></script>
+</body>
 </html>
