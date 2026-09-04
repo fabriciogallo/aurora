@@ -13,11 +13,104 @@ const USER_BUBBLE = {
   color: "rgb(27,21,35)", whiteSpace: "pre-line", textWrap: "pretty"
 };
 
-const REPLIES = {
-  "Estruturar Plano de Desenvolvimento": "Plano de Desenvolvimento — Maria da Silva (90 dias)\n• Dias 1-30: alinhamento de expectativas, 2 metas de entrega e 1 checkpoint quinzenal.\n• Dias 31-60: mentoria com par sênior + revisão de indicadores de qualidade.\n• Dias 61-90: avaliação final de performance e decisão documentada.\nPosso lançar esse plano no ciclo de performance atual?",
-  "Calcular custos de demissão": "Custo estimado do desligamento da Maria: R$ 18.500\n• Rescisão e verbas: R$ 9.200\n• Encargos e multa de FGTS: R$ 3.100\n• Recrutamento e seleção: R$ 2.900\n• Ramp-up do substituto (3 meses): R$ 3.300\nComparado a R$ 4.800 de um plano de desenvolvimento de 90 dias."
+const FALLBACK = "Boa pergunta. Cruzando performance, feedbacks e pesquisas de experiência dessa área, encontrei 3 pontos de atenção e 2 oportunidades. Vamos seguir por uma das opções abaixo?";
+
+// A small branching script for the Boreal demo: each node is a bot line plus
+// the buttons that lead to the next node, so the visitor drives the
+// conversation instead of watching a single fixed exchange play out.
+const CHAT_TREE = {
+  start: {
+    bot: "Oi! Sou o Boreal, a IA de RH da Aurora. Qual situação você quer decidir agora?",
+    options: [
+      { label: "Avaliar uma possível demissão", next: "demissao" },
+      { label: "Entender queda de performance", next: "performance" },
+      { label: "Comparar planos e preços", next: "planos" }
+    ]
+  },
+  demissao: {
+    bot: "Antes de seguir com a demissão da Maria da Silva, vale considerar alguns dados:\n📊 Desempenho: queda de 18% nos últimos 3 meses, mas 92% das entregas anteriores estavam dentro do prazo.\n💰 Custo estimado do desligamento: R$ 18.500, considerando rescisão, encargos e custos de substituição.\n📈 Colaboradores em situações semelhantes tiveram aumento médio de 25% na produtividade após um plano de desenvolvimento de 90 dias.\nComo você quer seguir?",
+    options: [
+      { label: "Estruturar Plano de Desenvolvimento", next: "plano90" },
+      { label: "Calcular custos de demissão", next: "custos" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  plano90: {
+    bot: "Plano de Desenvolvimento — Maria da Silva (90 dias)\n• Dias 1-30: alinhamento de expectativas, 2 metas de entrega e 1 checkpoint quinzenal.\n• Dias 31-60: mentoria com par sênior + revisão de indicadores de qualidade.\n• Dias 61-90: avaliação final de performance e decisão documentada.\nPosso lançar esse plano no ciclo de performance atual?",
+    options: [
+      { label: "Sim, lançar no ciclo atual", next: "lancar" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  custos: {
+    bot: "Custo estimado do desligamento da Maria: R$ 18.500\n• Rescisão e verbas: R$ 9.200\n• Encargos e multa de FGTS: R$ 3.100\n• Recrutamento e seleção: R$ 2.900\n• Ramp-up do substituto (3 meses): R$ 3.300\nComparado a R$ 4.800 de um plano de desenvolvimento de 90 dias — quer ver o plano?",
+    options: [
+      { label: "Estruturar Plano de Desenvolvimento", next: "plano90" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  lancar: {
+    bot: "Prontinho — adicionei o Plano de Desenvolvimento da Maria ao ciclo atual, com checkpoints quinzenais. Quer que eu avise a liderança dela agora?",
+    options: [
+      { label: "Sim, avisar a liderança", next: "avisar" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  avisar: {
+    bot: "Notificação enviada à liderança da Maria, com o plano e os prazos anexados. Posso ajudar com outra decisão?",
+    options: [
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  performance: {
+    bot: "Analisando os últimos 90 dias do time: queda média de 12% na entrega, mas a satisfação no trabalho subiu 8%. Isso costuma indicar sobrecarga, não falta de engajamento. Como você quer investigar?",
+    options: [
+      { label: "Ver por colaborador", next: "porColaborador" },
+      { label: "Ver causa raiz", next: "causaRaiz" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  porColaborador: {
+    bot: "3 colaboradores concentram 70% da queda — todos com mais de 6 projetos simultâneos no período. Os outros 9 do time mantiveram a média histórica. Quer que eu monte um plano de redistribuição de carga?",
+    options: [
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  causaRaiz: {
+    bot: "Cruzando com a pesquisa de experiência: sobrecarga (61%) e falta de clareza de prioridades (24%) são as causas mais citadas. Menos de 5% aponta para falta de engajamento. Quer priorizar um plano de ação sobre isso?",
+    options: [
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  planos: {
+    bot: "Nossos planos: Básico (R$ 30/colaborador) cobre o essencial de gestão. Boreal (R$ 49,99/colaborador) adiciona inteligência artificial e planos de ação individuais. Quer que eu simule o custo total para o seu time?",
+    options: [
+      { label: "Simular para 50 pessoas", next: "simular50" },
+      { label: "Simular para 200 pessoas", next: "simular200" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  simular50: {
+    bot: "Para 50 colaboradores:\n• Básico: R$ 1.500/mês\n• Boreal: R$ 2.499,50/mês\nA diferença (≈R$ 1.000/mês) costuma se pagar com uma única decisão de retenção evitada. Quer falar com o time comercial?",
+    options: [
+      { label: "Falar com o time comercial", next: "comercial" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  simular200: {
+    bot: "Para 200 colaboradores:\n• Básico: R$ 6.000/mês\n• Boreal: R$ 9.998/mês\nEmpresas nesse porte costumam recuperar a diferença já no primeiro trimestre com menos turnover. Quer falar com o time comercial?",
+    options: [
+      { label: "Falar com o time comercial", next: "comercial" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  comercial: {
+    bot: "Perfeito — deixe seus dados no formulário de contato abaixo que a nossa equipe entra em contato em até 1 dia útil.",
+    options: [
+      { label: "Voltar ao início", next: "start" }
+    ]
+  }
 };
-const FALLBACK = "Boa pergunta. Cruzando performance, feedbacks e pesquisas de experiência dessa área, encontrei 3 pontos de atenção e 2 oportunidades. Quer que eu detalhe por colaborador ou por time?";
 
 /* ---------------- Icons ---------------- */
 
@@ -56,6 +149,63 @@ function mountIcons(icons) {
   });
 }
 
+/* ---------------- Scroll reveal ---------------- */
+
+function initScrollReveal() {
+  const els = document.querySelectorAll("[data-reveal]");
+  if (!els.length) return;
+  if (!("IntersectionObserver" in window)) {
+    els.forEach(el => el.classList.add("is-visible"));
+    return;
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+  els.forEach(el => io.observe(el));
+}
+
+/* ---------------- Header scroll shadow ---------------- */
+
+function initHeaderScrollShadow() {
+  const header = document.querySelector(".header");
+  if (!header) return;
+  let ticking = false;
+  function update() {
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
+    ticking = false;
+  }
+  window.addEventListener("scroll", () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  update();
+}
+
+function initNavScrollSpy() {
+  const links = Array.from(document.querySelectorAll('.header-nav [data-nav]'));
+  const sections = links
+    .map(link => ({ link, section: document.getElementById((link.getAttribute("href") || "").slice(1)) }))
+    .filter(entry => entry.section);
+  if (!sections.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const match = sections.find(s => s.section === entry.target);
+      if (!match) return;
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove("is-active"));
+        match.link.classList.add("is-active");
+      }
+    });
+  }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+
+  sections.forEach(({ section }) => observer.observe(section));
+}
+
 /* ---------------- Nav / header offset scroll ---------------- */
 
 function initNav() {
@@ -77,17 +227,17 @@ function initNav() {
 function initFit() {
   const root = document.getElementById("root");
   if (!root) return;
+  // `zoom` reflows the layout for real (unlike `transform: scale`, which only
+  // repaints it visually and needs a negative-margin hack to avoid leaving
+  // blank space below). That transform + overflow:hidden + border-radius
+  // combo on the plan cards was clipping their background mid-card in
+  // Chromium, so `zoom` sidesteps the compositing bug entirely.
+  // No upper bound: on screens wider than the 1920 design canvas the page
+  // scales UP to fill the viewport instead of staying capped with blank
+  // margins on the sides — same mechanism, just no ceiling on it.
   function fit() {
     const w = window.innerWidth;
-    if (w >= 1280 && w < 1920) {
-      const s = w / 1920;
-      root.style.transform = "scale(" + s + ")";
-      root.style.transformOrigin = "top left";
-      root.style.marginBottom = -(root.offsetHeight * (1 - s)) + "px";
-    } else {
-      root.style.transform = "";
-      root.style.marginBottom = "";
-    }
+    root.style.zoom = w >= 1280 ? String(w / 1920) : "";
   }
   fit();
   window.addEventListener("resize", fit);
@@ -178,6 +328,7 @@ function initChat() {
   if (!body || !form || !input) return;
 
   let replyTimer = null;
+  let optionsEl = null;
 
   function scrollToBottom() {
     body.scrollTop = body.scrollHeight;
@@ -198,22 +349,60 @@ function initChat() {
     scrollToBottom();
   }
 
+  function clearOptions() {
+    if (optionsEl) { optionsEl.remove(); optionsEl = null; }
+  }
+
+  function renderOptions(options) {
+    clearOptions();
+    if (!options || !options.length) return;
+    optionsEl = document.createElement("div");
+    optionsEl.className = "chat-quick-replies";
+    options.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "quick-reply chat-quick-reply-btn";
+      btn.textContent = opt.label;
+      btn.addEventListener("click", () => goToNode(opt.label, opt.next));
+      optionsEl.appendChild(btn);
+    });
+    typingIndicator.insertAdjacentElement("beforebegin", optionsEl);
+    scrollToBottom();
+  }
+
+  function showNode(nodeKey) {
+    const node = CHAT_TREE[nodeKey];
+    if (!node) return;
+    typingIndicator.classList.remove("hidden");
+    scrollToBottom();
+    clearTimeout(replyTimer);
+    replyTimer = setTimeout(() => {
+      typingIndicator.classList.add("hidden");
+      push("bot", node.bot);
+      renderOptions(node.options);
+    }, 700);
+  }
+
+  function goToNode(label, nextKey) {
+    clearOptions();
+    push("user", label);
+    showNode(nextKey);
+  }
+
   function ask(text) {
     const trimmed = text.trim();
     if (!trimmed) return;
+    clearOptions();
     push("user", trimmed);
     typingIndicator.classList.remove("hidden");
     scrollToBottom();
     clearTimeout(replyTimer);
     replyTimer = setTimeout(() => {
       typingIndicator.classList.add("hidden");
-      push("bot", REPLIES[trimmed] || FALLBACK);
+      push("bot", FALLBACK);
+      renderOptions(CHAT_TREE.start.options);
     }, 900);
   }
-
-  document.querySelectorAll(".js-quick-reply").forEach(btn => {
-    btn.addEventListener("click", () => ask(btn.getAttribute("data-reply")));
-  });
 
   form.addEventListener("submit", e => {
     e.preventDefault();
@@ -221,6 +410,11 @@ function initChat() {
     input.value = "";
     ask(v);
   });
+
+  // First bot line + starting choices render right away, no reply delay —
+  // this is the visitor's entry point into the tree, not a reply to anything.
+  push("bot", CHAT_TREE.start.bot);
+  renderOptions(CHAT_TREE.start.options);
 }
 
 /* ---------------- Calendar ---------------- */
@@ -251,8 +445,10 @@ function renderCalendar() {
   // Rebuilding the buttons below drops keyboard focus, so remember what kind
   // of control had it and restore focus to its replacement afterwards.
   const active = document.activeElement;
-  const refocus = { day: active && active.classList && active.classList.contains("cal-day") ? active.dataset.date : null,
-    slot: active && active.classList && active.classList.contains("cal-slot") ? active.dataset.time : null };
+  const refocus = {
+    day: active && active.classList && active.classList.contains("cal-day") ? active.dataset.date : null,
+    slot: active && active.classList && active.classList.contains("cal-slot") ? active.dataset.time : null
+  };
 
   daysGrid.innerHTML = "";
   for (let i = 0; i < first; i++) {
@@ -500,7 +696,10 @@ function initContactForm() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initNav();
+  initNavScrollSpy();
   initFit();
+  initScrollReveal();
+  initHeaderScrollShadow();
   initVideoModal();
   initPlanToggle();
   initChat();
