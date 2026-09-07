@@ -122,48 +122,6 @@ button {
   }
 }
 
-@keyframes auroraDriftC {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-    opacity: .48;
-  }
-
-  50% {
-    transform: translate(40px, 55px) scale(1.1);
-    opacity: .78;
-  }
-}
-
-@keyframes auroraRibbon {
-
-  0%,
-  100% {
-    transform: rotate(-10deg) translateX(0) scaleY(1);
-    opacity: .45;
-  }
-
-  50% {
-    transform: rotate(-4deg) translateX(90px) scaleY(1.25);
-    opacity: .8;
-  }
-}
-
-@keyframes auroraRibbonReverse {
-
-  0%,
-  100% {
-    transform: rotate(8deg) translateX(0) scaleY(1);
-    opacity: .4;
-  }
-
-  50% {
-    transform: rotate(3deg) translateX(-80px) scaleY(1.2);
-    opacity: .72;
-  }
-}
-
 /* Interactive states (converted from the design-canvas style-hover / style-focus attributes) */
 .hidden {
   display: none !important;
@@ -837,84 +795,48 @@ button {
 .hero-decor {
   position: absolute;
   left: 0;
-  top: -100px;
+  top: -60px;
   width: 1920px;
   height: 912px;
-  opacity: .7;
   overflow: hidden;
   pointer-events: none;
-  animation: auroraHueShift 22s ease-in-out infinite;
+  animation: auroraHueShift 26s ease-in-out infinite;
 }
 
-.hero-decor-blob-green {
+/* Two big soft glows anchored to the bottom corners — the classic aurora
+   look of a magenta wash on one side fading into teal/green on the other,
+   with plain white in between so the copy stays readable. */
+.hero-decor-glow-magenta {
   position: absolute;
-  left: -180px;
-  top: 40px;
-  width: 808px;
-  height: 1034px;
+  left: -320px;
+  bottom: -360px;
+  width: 1220px;
+  height: 1220px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(0, 221, 129, .30), rgba(0, 221, 129, 0));
-  filter: blur(40px);
-  animation: auroraDriftA 17s ease-in-out infinite;
+  background: radial-gradient(closest-side, rgba(199, 58, 173, .55) 0%, rgba(178, 62, 168, .28) 45%, rgba(178, 62, 168, 0) 75%);
+  filter: blur(20px);
+  animation: auroraDriftA 19s ease-in-out infinite;
 }
 
-.hero-decor-blob-pink {
+.hero-decor-glow-teal {
   position: absolute;
-  left: 620px;
-  top: -220px;
-  width: 984px;
-  height: 653px;
+  right: -320px;
+  bottom: -400px;
+  width: 1220px;
+  height: 1220px;
   border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(226, 61, 116, .16), rgba(226, 61, 116, 0));
-  filter: blur(30px);
-  animation: auroraDriftB 20s ease-in-out infinite 1.5s;
-}
-
-.hero-decor-blob-purple {
-  position: absolute;
-  left: 300px;
-  top: 420px;
-  width: 900px;
-  height: 620px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(124, 92, 250, .16), rgba(124, 92, 250, 0));
-  filter: blur(30px);
-  animation: auroraDriftC 24s ease-in-out infinite 3s;
+  background: radial-gradient(closest-side, rgba(24, 189, 152, .5) 0%, rgba(24, 189, 152, .24) 45%, rgba(24, 189, 152, 0) 75%);
+  filter: blur(20px);
+  animation: auroraDriftB 22s ease-in-out infinite 1s;
 }
 
 .hero-decor-lines {
   position: absolute;
   inset: 0;
-  opacity: .1;
+  opacity: .12;
   background-image: repeating-linear-gradient(115deg, rgb(105, 80, 157) 0 1px, transparent 1px 46px);
   width: 100%;
   height: 100%;
-}
-
-.hero-decor-ribbon-a {
-  position: absolute;
-  left: 8%;
-  top: -140px;
-  width: 1500px;
-  height: 760px;
-  border-radius: 50%;
-  background: linear-gradient(100deg, rgba(0, 221, 129, 0) 0%, rgba(0, 221, 129, .35) 22%, rgba(41, 177, 168, .3) 40%, rgba(124, 92, 250, .28) 60%, rgba(226, 61, 116, .2) 78%, rgba(226, 61, 116, 0) 100%);
-  filter: blur(55px);
-  transform-origin: center;
-  animation: auroraRibbon 13s ease-in-out infinite;
-}
-
-.hero-decor-ribbon-b {
-  position: absolute;
-  left: -6%;
-  top: 120px;
-  width: 1300px;
-  height: 620px;
-  border-radius: 50%;
-  background: linear-gradient(80deg, rgba(124, 92, 250, 0) 0%, rgba(124, 92, 250, .24) 30%, rgba(0, 221, 129, .28) 55%, rgba(41, 177, 168, .22) 75%, rgba(41, 177, 168, 0) 100%);
-  filter: blur(60px);
-  transform-origin: center;
-  animation: auroraRibbonReverse 16s ease-in-out infinite 2s;
 }
 
 .hero-copy {
@@ -1413,19 +1335,10 @@ button {
   border-radius: 12px;
   background: linear-gradient(180deg, rgba(41, 177, 168, 0.2) 0%, rgba(8, 124, 116, 0.2) 100%), rgb(255, 255, 255);
   box-shadow: inset 0 0 0 1px rgba(41, 177, 168, 0.04), 0 8px 16px -10px rgba(152, 32, 23, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-}
-
-.feature-icon-a-pos {
-  position: absolute;
-  left: 19.5px;
-  top: 13.5px;
-}
-
-.feature-icon-b-pos {
-  position: absolute;
-  left: 15px;
-  top: 19.5px;
 }
 
 .feature-card-text {
@@ -2822,20 +2735,11 @@ button {
   border-bottom: 1px solid rgb(231, 222, 233);
 }
 
-.footer-logo-mark {
-  width: 24px;
-  height: 23px;
-  background: url(assets/logo-aurora.png) 0.145% 50% / 455.579% 100% no-repeat;
+.footer-logo {
+  width: 200px;
+  height: 42px;
+  background: url(assets/logo-aurora.png) center / cover no-repeat;
   flex-shrink: 0;
-}
-
-.footer-logo-text {
-  font-family: Manrope, sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.16px;
-  color: rgb(27, 21, 35);
 }
 
 .social-icon-circle {

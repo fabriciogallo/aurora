@@ -23,7 +23,6 @@ const CHAT_TREE = {
     bot: "Oi! Sou o Boreal, a IA de RH da Aurora. Como posso te ajudar hoje? Escolha uma opção ou digite sua pergunta.",
     options: [
       { label: "Avaliar colaboradores", next: "employees" },
-      { label: "Avaliar uma possível demissão", next: "demissao" },
       { label: "Entender queda de performance", next: "performance" },
       { label: "Comparar planos e preços", next: "planos" },
       { label: "Tirar dúvidas sobre a Aurora", next: "duvidas" }
@@ -56,41 +55,6 @@ const CHAT_TREE = {
     bot: "Sim. Os dados ficam criptografados em trânsito e em repouso, com controle de acesso por papel (quem vê o quê) e conformidade com a LGPD.",
     options: [
       { label: "Voltar às dúvidas", next: "duvidas" },
-      { label: "Voltar ao início", next: "start" }
-    ]
-  },
-  demissao: {
-    bot: "Antes de seguir com a demissão da Maria da Silva, vale considerar alguns dados:\n📊 Desempenho: queda de 18% nos últimos 3 meses, mas 92% das entregas anteriores estavam dentro do prazo.\n💰 Custo estimado do desligamento: R$ 18.500, considerando rescisão, encargos e custos de substituição.\n📈 Colaboradores em situações semelhantes tiveram aumento médio de 25% na produtividade após um plano de desenvolvimento de 90 dias.\nComo você quer seguir?",
-    options: [
-      { label: "Estruturar Plano de Desenvolvimento", next: "plano90" },
-      { label: "Calcular custos de demissão", next: "custos" },
-      { label: "Voltar ao início", next: "start" }
-    ]
-  },
-  plano90: {
-    bot: "Plano de Desenvolvimento — Maria da Silva (90 dias)\n• Dias 1-30: alinhamento de expectativas, 2 metas de entrega e 1 checkpoint quinzenal.\n• Dias 31-60: mentoria com par sênior + revisão de indicadores de qualidade.\n• Dias 61-90: avaliação final de performance e decisão documentada.\nPosso lançar esse plano no ciclo de performance atual?",
-    options: [
-      { label: "Sim, lançar no ciclo atual", next: "lancar" },
-      { label: "Voltar ao início", next: "start" }
-    ]
-  },
-  custos: {
-    bot: "Custo estimado do desligamento da Maria: R$ 18.500\n• Rescisão e verbas: R$ 9.200\n• Encargos e multa de FGTS: R$ 3.100\n• Recrutamento e seleção: R$ 2.900\n• Ramp-up do substituto (3 meses): R$ 3.300\nComparado a R$ 4.800 de um plano de desenvolvimento de 90 dias — quer ver o plano?",
-    options: [
-      { label: "Estruturar Plano de Desenvolvimento", next: "plano90" },
-      { label: "Voltar ao início", next: "start" }
-    ]
-  },
-  lancar: {
-    bot: "Prontinho — adicionei o Plano de Desenvolvimento da Maria ao ciclo atual, com checkpoints quinzenais. Quer que eu avise a liderança dela agora?",
-    options: [
-      { label: "Sim, avisar a liderança", next: "avisar" },
-      { label: "Voltar ao início", next: "start" }
-    ]
-  },
-  avisar: {
-    bot: "Notificação enviada à liderança da Maria, com o plano e os prazos anexados. Posso ajudar com outra decisão?",
-    options: [
       { label: "Voltar ao início", next: "start" }
     ]
   },
