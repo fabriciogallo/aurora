@@ -20,8 +20,16 @@
   <div class="page" data-r="root" id="root">
 
     <header class="header" data-r="hdr">
-      <a class="header-logo" data-r="hdr-logo" href="#top" data-nav aria-label="Aurora — voltar ao início"></a>
-      <nav class="header-nav" data-r="hdr-nav" aria-label="Menu principal">
+      <div class="header-bar">
+        <a class="header-logo" data-r="hdr-logo" href="#top" data-nav aria-label="Aurora — voltar ao início"></a>
+        <button type="button" class="header-menu-toggle" id="header-menu-toggle" aria-expanded="false"
+          aria-controls="header-nav-panel" aria-label="Abrir menu">
+          <span class="header-menu-bar"></span>
+          <span class="header-menu-bar"></span>
+          <span class="header-menu-bar"></span>
+        </button>
+      </div>
+      <nav class="header-nav" data-r="hdr-nav" id="header-nav-panel" aria-label="Menu principal">
         <a href="#produtos" data-nav class="nav-link nav-link-text">Produtos</a>
         <a href="#boreal" data-nav class="nav-link nav-link-text">Simulador</a>
         <a href="#planos" data-nav class="nav-link nav-link-text">Planos</a>
@@ -500,7 +508,7 @@
           <div class="contact-decor-purple"></div>
           <div class="contact-decor-teal"></div>
         </div>
-        <div class="contact-inner">
+        <div class="contact-inner" data-r="fw">
           <div class="contact-head" data-reveal>
             <h2 class="contact-title" data-r="h2">Decisões melhores começam com uma visão mais completa sobre as
               pessoas.</h2>
