@@ -1619,6 +1619,69 @@ button {
   align-self: stretch;
 }
 
+.chat-start-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  flex-grow: 1;
+  align-self: stretch;
+  padding: 24px;
+}
+
+.chat-start-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(155deg, rgb(226, 61, 116) 0%, rgb(105, 80, 157) 100%);
+  color: rgb(255, 255, 255);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-start-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+  color: rgb(27, 21, 35);
+}
+
+.chat-start-desc {
+  margin: 0;
+  max-width: 380px;
+  font-size: 14px;
+  line-height: 21px;
+  color: rgb(91, 83, 99);
+}
+
+.chat-start-btn {
+  margin-top: 6px;
+  height: 48px;
+  border-radius: 100px;
+  background: rgb(226, 61, 116);
+  border: 0;
+  padding: 0 28px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+  transition: transform .18s ease;
+}
+
+.chat-dept-label {
+  align-self: stretch;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  color: rgb(108, 100, 116);
+  margin-top: 4px;
+}
+
 .chat-msg-row-bot {
   display: flex;
   justify-content: flex-start;
@@ -1764,6 +1827,12 @@ button {
   cursor: pointer;
   flex-shrink: 0;
   transition: transform .18s ease;
+}
+
+.chat-input-field:disabled,
+.chat-send-btn:disabled {
+  opacity: .5;
+  cursor: default;
 }
 
 .testimonials {

@@ -20,11 +20,43 @@ const FALLBACK = "Boa pergunta. Cruzando performance, feedbacks e pesquisas de e
 // conversation instead of watching a single fixed exchange play out.
 const CHAT_TREE = {
   start: {
-    bot: "Oi! Sou o Boreal, a IA de RH da Aurora. Qual situação você quer decidir agora?",
+    bot: "Oi! Sou o Boreal, a IA de RH da Aurora. Como posso te ajudar hoje? Escolha uma opção ou digite sua pergunta.",
     options: [
+      { label: "Avaliar colaboradores", next: "employees" },
       { label: "Avaliar uma possível demissão", next: "demissao" },
       { label: "Entender queda de performance", next: "performance" },
-      { label: "Comparar planos e preços", next: "planos" }
+      { label: "Comparar planos e preços", next: "planos" },
+      { label: "Tirar dúvidas sobre a Aurora", next: "duvidas" }
+    ]
+  },
+  duvidas: {
+    bot: "Claro! Sobre o que você quer saber?",
+    options: [
+      { label: "Como funciona a implantação?", next: "duvidasImplantacao" },
+      { label: "Integra com meu RH atual?", next: "duvidasIntegracao" },
+      { label: "É seguro para dados sensíveis?", next: "duvidasSeguranca" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  duvidasImplantacao: {
+    bot: "A implantação da Aurora leva em média 2 semanas: a 1ª semana é para importar dados e configurar times, a 2ª para treinar a liderança e ativar o Boreal. Nenhuma etapa exige pausar as operações de RH.",
+    options: [
+      { label: "Voltar às dúvidas", next: "duvidas" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  duvidasIntegracao: {
+    bot: "Sim — a Aurora se integra com os principais sistemas de RH e folha de pagamento via API, além de importação por planilha para quem prefere migrar em etapas.",
+    options: [
+      { label: "Voltar às dúvidas", next: "duvidas" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  },
+  duvidasSeguranca: {
+    bot: "Sim. Os dados ficam criptografados em trânsito e em repouso, com controle de acesso por papel (quem vê o quê) e conformidade com a LGPD.",
+    options: [
+      { label: "Voltar às dúvidas", next: "duvidas" },
+      { label: "Voltar ao início", next: "start" }
     ]
   },
   demissao: {
@@ -111,6 +143,195 @@ const CHAT_TREE = {
     ]
   }
 };
+
+// The employee roster behind "Avaliar colaboradores" — grouped by
+// departamento in the list, each entry expands into its own profile +
+// action nodes below (built by buildEmployeeNodes, not typed out by hand).
+const EMPLOYEES = [
+  {
+    slug: "rafael-tanaka", nome: "Rafael Tanaka", cargo: "Engenheiro de Software Sênior", departamento: "Engenharia",
+    senioridade: "Sênior", tempoEmpresa: "3 anos e 4 meses", performance: "Acima da média nos últimos 2 ciclos",
+    salario: 14200, highlight: "Liderou a migração de infraestrutura, reduzindo custos em 22%.",
+    lowlight: "Atrasos em revisões de código no último trimestre.",
+    projPassado: "Migração para AWS", projAtual: "Plataforma de Analytics v2", projFuturo: "Automação de deploys",
+    proximoNivel: "Engenheiro Principal", custoDesligamento: 21400
+  },
+  {
+    slug: "beatriz-nogueira", nome: "Beatriz Nogueira", cargo: "Engenheira de Software Pleno", departamento: "Engenharia",
+    senioridade: "Pleno", tempoEmpresa: "1 ano e 8 meses", performance: "Consistente, dentro da média do time",
+    salario: 9800, highlight: "Reduziu bugs em produção em 30% no último ciclo.",
+    lowlight: "Pouca participação em decisões de arquitetura.",
+    projPassado: "App mobile", projAtual: "Plataforma de Analytics v2", projFuturo: "Onboarding automatizado",
+    proximoNivel: "Engenheira de Software Sênior", custoDesligamento: 15600
+  },
+  {
+    slug: "diego-ferraz", nome: "Diego Ferraz", cargo: "Executivo de Vendas Sênior", departamento: "Vendas",
+    senioridade: "Sênior", tempoEmpresa: "4 anos", performance: "Bateu 118% da meta no último trimestre",
+    salario: 12500, highlight: "Fechou o maior contrato do ano (R$ 480.000).",
+    lowlight: "Alta rotatividade na carteira de clientes pequenos.",
+    projPassado: "Expansão para a região Sul", projAtual: "Contas Enterprise", projFuturo: "Programa de parcerias",
+    proximoNivel: "Gerente de Contas Enterprise", custoDesligamento: 19800
+  },
+  {
+    slug: "juliana-prado", nome: "Juliana Prado", cargo: "SDR Júnior", departamento: "Vendas",
+    senioridade: "Júnior", tempoEmpresa: "7 meses", performance: "Acima da meta de qualificação de leads",
+    salario: 4200, highlight: "Melhor taxa de conversão de leads do time.",
+    lowlight: "Ainda em curva de aprendizado em negociação.",
+    projPassado: "—", projAtual: "Prospecção outbound", projFuturo: "Transição para Executiva de Vendas",
+    proximoNivel: "SDR Pleno", custoDesligamento: 6100
+  },
+  {
+    slug: "camila-duarte", nome: "Camila Duarte", cargo: "Analista de Marketing Pleno", departamento: "Marketing",
+    senioridade: "Pleno", tempoEmpresa: "2 anos e 2 meses", performance: "Dentro da média do time",
+    salario: 7600, highlight: "A campanha de lançamento gerou +40% de leads.",
+    lowlight: "Atraso na entrega de materiais em 2 campanhas.",
+    projPassado: "Rebranding", projAtual: "Campanha do 3º trimestre", projFuturo: "Série de webinars",
+    proximoNivel: "Analista de Marketing Sênior", custoDesligamento: 11900
+  },
+  {
+    slug: "pedro-ximenes", nome: "Pedro Ximenes", cargo: "Coordenador de Marketing Sênior", departamento: "Marketing",
+    senioridade: "Sênior", tempoEmpresa: "5 anos", performance: "Alta, com destaque na liderança do time",
+    salario: 13400, highlight: "Estruturou o time de conteúdo do zero.",
+    lowlight: "Sobrecarga relatada na última pesquisa de experiência.",
+    projPassado: "Estruturação do time de conteúdo", projAtual: "Estratégia de conteúdo 2026", projFuturo: "Expansão internacional",
+    proximoNivel: "Gerente de Marketing", custoDesligamento: 20900
+  },
+  {
+    slug: "fernanda-lopes", nome: "Fernanda Lopes", cargo: "Analista de RH Júnior", departamento: "RH",
+    senioridade: "Júnior", tempoEmpresa: "10 meses", performance: "Em desenvolvimento, evolução consistente",
+    salario: 5200, highlight: "Implementou a pesquisa de clima automatizada.",
+    lowlight: "Ainda com pouca autonomia em processos de desligamento.",
+    projPassado: "—", projAtual: "Pesquisa de clima automatizada", projFuturo: "Onboarding digital",
+    proximoNivel: "Analista de RH Pleno", custoDesligamento: 7400
+  },
+  {
+    slug: "maria-da-silva", nome: "Maria da Silva", cargo: "Analista de Operações Pleno", departamento: "RH",
+    senioridade: "Pleno", tempoEmpresa: "2 anos", performance: "Queda de 18% nos últimos 3 meses, mas 92% das entregas no prazo",
+    salario: 8400, highlight: "Historicamente uma das melhores entregadoras do time.",
+    lowlight: "Queda recente de produtividade, com indícios de sobrecarga.",
+    projPassado: "Implantação do módulo de pesquisas", projAtual: "Suporte ao ciclo de performance atual", projFuturo: "A definir, pendente da decisão sobre seu caso",
+    proximoNivel: "Analista de Operações Sênior", custoDesligamento: 18500
+  }
+];
+
+function fmtMoney(n) {
+  return "R$ " + n.toLocaleString("pt-BR");
+}
+
+function employeeProfileText(e) {
+  return "👤 " + e.nome + " — " + e.cargo + " (" + e.departamento + ")\n" +
+    "🎯 Senioridade: " + e.senioridade + "\n" +
+    "🕒 Tempo na empresa: " + e.tempoEmpresa + "\n" +
+    "📊 Performance: " + e.performance + "\n" +
+    "💰 Salário: " + fmtMoney(e.salario) + "/mês\n" +
+    "✅ Highlight: " + e.highlight + "\n" +
+    "⚠️ Lowlight: " + e.lowlight + "\n" +
+    "📁 Projetos: " + e.projPassado + " (passado) → " + e.projAtual + " (atual) → " + e.projFuturo + " (futuro)\n\n" +
+    "Como você quer agir?";
+}
+
+// Each employee expands into a profile node plus its own promote/adjust
+// pay/development-plan/dismiss sub-nodes, generated here instead of typed
+// out by hand for all 8 people.
+function buildEmployeeNodes(e) {
+  const key = "emp:" + e.slug;
+  const novoSalario = Math.round(e.salario * 1.1 / 100) * 100;
+  const nodes = {};
+
+  nodes[key] = {
+    bot: employeeProfileText(e),
+    options: [
+      { label: "Promover", next: key + ":promover" },
+      { label: "Ajustar remuneração", next: key + ":salario" },
+      { label: "Plano de desenvolvimento", next: key + ":plano" },
+      { label: "Demitir", next: key + ":demitir" },
+      { label: "Voltar para a lista", next: "employees" }
+    ]
+  };
+
+  nodes[key + ":promover"] = {
+    bot: "Com base no histórico de " + e.nome + ", sugiro promover para " + e.proximoNivel + ", com reajuste de 15% a 20%. Quer que eu prepare a proposta para a liderança?",
+    options: [
+      { label: "Preparar proposta", next: key + ":promover:ok" },
+      { label: "Voltar para a lista", next: "employees" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  };
+  nodes[key + ":promover:ok"] = {
+    bot: "Proposta de promoção de " + e.nome + " para " + e.proximoNivel + " enviada para aprovação da liderança, com justificativa baseada em performance e nos highlights recentes.",
+    options: [
+      { label: "Avaliar outro colaborador", next: "employees" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  };
+
+  nodes[key + ":salario"] = {
+    bot: "Comparando com a média de mercado para " + e.cargo + ", uma correção de ~10% deixaria " + e.nome.split(" ")[0] + " melhor posicionado(a): de " + fmtMoney(e.salario) + " para " + fmtMoney(novoSalario) + "/mês. Quer aplicar o ajuste?",
+    options: [
+      { label: "Aplicar ajuste", next: key + ":salario:ok" },
+      { label: "Voltar para a lista", next: "employees" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  };
+  nodes[key + ":salario:ok"] = {
+    bot: "Ajuste salarial de " + e.nome + " para " + fmtMoney(novoSalario) + "/mês enviado para aprovação do financeiro.",
+    options: [
+      { label: "Avaliar outro colaborador", next: "employees" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  };
+
+  nodes[key + ":plano"] = {
+    bot: "Plano de Desenvolvimento sugerido para " + e.nome + " (90 dias):\n• Dias 1-30: alinhamento de expectativas e metas claras com a liderança.\n• Dias 31-60: mentoria com par sênior e revisão quinzenal de indicadores.\n• Dias 61-90: avaliação final de performance e decisão documentada.\nPosso lançar esse plano no ciclo atual?",
+    options: [
+      { label: "Lançar plano", next: key + ":plano:ok" },
+      { label: "Voltar para a lista", next: "employees" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  };
+  nodes[key + ":plano:ok"] = {
+    bot: "Plano de Desenvolvimento de " + e.nome + " lançado no ciclo atual, com checkpoints quinzenais.",
+    options: [
+      { label: "Avaliar outro colaborador", next: "employees" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  };
+
+  nodes[key + ":demitir"] = {
+    bot: "Antes de decidir pelo desligamento de " + e.nome + ", vale considerar:\n💰 Custo estimado: " + fmtMoney(e.custoDesligamento) + ", considerando rescisão, encargos e substituição.\n📈 Colaboradores em situações parecidas costumam se recuperar em até 90 dias com um plano estruturado.\nQuer ver alternativas antes de decidir?",
+    options: [
+      { label: "Ver plano de desenvolvimento", next: key + ":plano" },
+      { label: "Confirmar desligamento", next: key + ":demitir:ok" },
+      { label: "Voltar para a lista", next: "employees" }
+    ]
+  };
+  nodes[key + ":demitir:ok"] = {
+    bot: "Desligamento de " + e.nome + " registrado, com processo de offboarding iniciado.",
+    options: [
+      { label: "Avaliar outro colaborador", next: "employees" },
+      { label: "Voltar ao início", next: "start" }
+    ]
+  };
+
+  return nodes;
+}
+
+const DEPARTAMENTOS = ["Engenharia", "Vendas", "Marketing", "RH"];
+
+CHAT_TREE.employees = {
+  bot: "Aqui está o time, organizado por setor e senioridade. Selecione um colaborador para ver o resumo completo.",
+  groups: DEPARTAMENTOS.map(dep => ({
+    label: dep,
+    options: EMPLOYEES
+      .filter(e => e.departamento === dep)
+      .map(e => ({ label: e.nome + " — " + e.cargo + " (" + e.senioridade + ")", next: "emp:" + e.slug }))
+  })),
+  options: [
+    { label: "Voltar ao início", next: "start" }
+  ]
+};
+
+EMPLOYEES.forEach(e => Object.assign(CHAT_TREE, buildEmployeeNodes(e)));
 
 /* ---------------- Icons ---------------- */
 
@@ -324,11 +545,14 @@ function initChat() {
   const body = document.getElementById("chat-body");
   const form = document.getElementById("chat-form");
   const input = document.getElementById("chat-input");
+  const sendBtn = form ? form.querySelector(".chat-send-btn") : null;
   const typingIndicator = document.getElementById("typing-indicator");
+  const startOverlay = document.getElementById("chat-start-overlay");
+  const startBtn = document.getElementById("chat-start-btn");
   if (!body || !form || !input) return;
 
   let replyTimer = null;
-  let optionsEl = null;
+  let extraEls = [];
 
   function scrollToBottom() {
     body.scrollTop = body.scrollHeight;
@@ -350,24 +574,42 @@ function initChat() {
   }
 
   function clearOptions() {
-    if (optionsEl) { optionsEl.remove(); optionsEl = null; }
+    extraEls.forEach(el => el.remove());
+    extraEls = [];
+  }
+
+  function addExtra(el) {
+    typingIndicator.insertAdjacentElement("beforebegin", el);
+    extraEls.push(el);
   }
 
   function renderOptions(options) {
-    clearOptions();
     if (!options || !options.length) return;
-    optionsEl = document.createElement("div");
-    optionsEl.className = "chat-quick-replies";
+    const el = document.createElement("div");
+    el.className = "chat-quick-replies";
     options.forEach(opt => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "quick-reply chat-quick-reply-btn";
       btn.textContent = opt.label;
       btn.addEventListener("click", () => goToNode(opt.label, opt.next));
-      optionsEl.appendChild(btn);
+      el.appendChild(btn);
     });
-    typingIndicator.insertAdjacentElement("beforebegin", optionsEl);
-    scrollToBottom();
+    addExtra(el);
+  }
+
+  // A node with `groups` (like the employee roster) renders one department
+  // label + its own button row per group, then falls through to the node's
+  // regular `options` (e.g. "Voltar ao início") below all of them.
+  function renderGroups(groups) {
+    groups.forEach(group => {
+      if (!group.options || !group.options.length) return;
+      const label = document.createElement("span");
+      label.className = "chat-dept-label";
+      label.textContent = group.label;
+      addExtra(label);
+      renderOptions(group.options);
+    });
   }
 
   function showNode(nodeKey) {
@@ -379,7 +621,9 @@ function initChat() {
     replyTimer = setTimeout(() => {
       typingIndicator.classList.add("hidden");
       push("bot", node.bot);
+      if (node.groups) renderGroups(node.groups);
       renderOptions(node.options);
+      scrollToBottom();
     }, 700);
   }
 
@@ -411,10 +655,25 @@ function initChat() {
     ask(v);
   });
 
-  // First bot line + starting choices render right away, no reply delay —
-  // this is the visitor's entry point into the tree, not a reply to anything.
-  push("bot", CHAT_TREE.start.bot);
-  renderOptions(CHAT_TREE.start.options);
+  // The conversation only starts once the visitor clicks "Iniciar
+  // simulação" — until then the input stays disabled so there's nothing
+  // to reply to yet.
+  input.disabled = true;
+  if (sendBtn) sendBtn.disabled = true;
+
+  if (startBtn) {
+    startBtn.addEventListener("click", () => {
+      if (startOverlay) startOverlay.remove();
+      input.disabled = false;
+      if (sendBtn) sendBtn.disabled = false;
+      input.focus();
+      showNode("start");
+    }, { once: true });
+  } else {
+    // No start button in the DOM (unexpected) — fall back to auto-starting
+    // so the chat still works instead of staying dead.
+    showNode("start");
+  }
 }
 
 /* ---------------- Calendar ---------------- */
