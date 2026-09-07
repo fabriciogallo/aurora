@@ -749,6 +749,7 @@ button {
   }
 
   [data-r="chat"] {
+    width: 344px;
     height: 560px !important;
   }
 
