@@ -399,7 +399,7 @@ button {
   [data-r="fw"] {
     width: 100% !important;
     max-width: 100% !important;
-    height: auto !important;
+    /* height: auto !important; */
   }
 
   [data-r="col-fw"] {
@@ -427,10 +427,17 @@ button {
 
   [data-r="hdr"] {
     height: auto !important;
-    flex-wrap: wrap !important;
-    gap: 12px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
     padding: 14px 20px !important;
+  }
+
+  .header-bar {
+    display: flex !important;
     justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
   }
 
   [data-r="hdr-logo"] {
@@ -438,26 +445,78 @@ button {
     height: 32px !important;
   }
 
-  [data-r="hdr-cta"] {
-    width: auto !important;
-    height: 42px !important;
-    font-size: 14px !important;
-    padding: 0 18px !important;
+  .header-menu-toggle {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgb(231, 222, 233);
+    background: rgb(255, 255, 255);
+    cursor: pointer;
+    flex-shrink: 0;
   }
 
+  .header-menu-bar {
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgb(36, 27, 58);
+    transition: transform .2s ease, opacity .2s ease;
+  }
+
+  .header-menu-toggle[aria-expanded="true"] .header-menu-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .header-menu-toggle[aria-expanded="true"] .header-menu-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .header-menu-toggle[aria-expanded="true"] .header-menu-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Hidden by default; .is-open (toggled in script.js) reveals it as a
+     full-width dropdown instead of the old horizontally-scrolling pill row,
+     which hid "Contato" off-screen with no hint that it was swipeable. */
   [data-r="hdr-nav"] {
-    order: 3 !important;
+    display: none !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
     width: 100% !important;
-    height: 44px !important;
-    gap: 20px !important;
-    padding: 8px 14px !important;
-    overflow-x: auto !important;
-    justify-content: flex-start !important;
-    scrollbar-width: none !important;
+    height: auto !important;
+    gap: 4px !important;
+    padding: 12px 4px 4px !important;
+    background: none !important;
+    border: none !important;
+    backdrop-filter: none !important;
   }
 
-  [data-r="hdr-nav"]::-webkit-scrollbar {
-    display: none;
+  [data-r="hdr-nav"].is-open {
+    display: flex !important;
+  }
+
+  [data-r="hdr-nav"] .nav-link-text {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    text-align: left !important;
+  }
+
+  /* The CTA moves out of the compact bar and appears as the last item of
+     the open dropdown, right below the nav links. */
+  [data-r="hdr-cta"] {
+    display: none !important;
+  }
+
+  [data-r="hdr-nav"].is-open~[data-r="hdr-cta"] {
+    display: flex !important;
+    width: 100% !important;
+    height: 46px !important;
+    margin-top: 8px !important;
   }
 
   [data-r="band"] {
@@ -639,7 +698,7 @@ button {
     text-align: center !important;
   }
 
-  [data-r="ct-steps"]>div>span:last-child {
+  [data-r="ct-steps"] .contact-step-label {
     display: none !important;
   }
 
@@ -686,7 +745,6 @@ button {
   }
 
   [data-r="demo-frame"] {
-    width: 350px !important;
     height: 220px !important;
   }
 
@@ -722,11 +780,22 @@ button {
   align-items: center;
 }
 
+/* On desktop the header bar is invisible plumbing — its logo and (hidden)
+   toggle button sit as direct flex children of .header, exactly as if the
+   wrapper weren't there. The mobile media query turns it into a real row. */
+.header-bar {
+  display: contents;
+}
+
 .header-logo {
   width: 200px;
   height: 42px;
   background: url(assets/logo-aurora.png) center / cover no-repeat;
   flex-shrink: 0;
+}
+
+.header-menu-toggle {
+  display: none;
 }
 
 .header-nav {
