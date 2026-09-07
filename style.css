@@ -686,6 +686,7 @@ button {
   }
 
   [data-r="demo-frame"] {
+    width: 350px !important;
     height: 220px !important;
   }
 
