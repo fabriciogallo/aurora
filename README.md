@@ -23,26 +23,6 @@ AURORA/
     ├── features.png
     └── avatar-1.jpg / avatar-2.png / avatar-3.png / avatar-4.png
 ```
-
-## Como rodar localmente
-
-O `script.js` usa `import()` dinâmico (ES module) para carregar `icons.js`,
-então o arquivo precisa ser servido por http(s) — abrir direto como
-`file://` não funciona (bloqueio de CORS do navegador). Qualquer servidor
-estático resolve:
-
-```bash
-npx serve .
-```
-
-Ou, com Python:
-
-```bash
-python -m http.server 5566
-```
-
-Depois acesse `http://localhost:<porta>/`.
-
 ## Seções da página
 
 | Seção | `id` | Descrição |
