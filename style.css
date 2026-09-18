@@ -746,6 +746,7 @@ button {
 
   [data-r="demo-frame"] {
     height: 220px !important;
+    width: 100%;
   }
 
   [data-r="chat"] {
