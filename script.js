@@ -886,7 +886,7 @@ function initContactForm() {
     else { currentStep += 1; setFormMessage("", false); renderSteps(); }
   });
 
-  form.addEventListener("submit", e => {
+ form.addEventListener("submit", async e => {
     e.preventDefault();
     const f = getFormValues();
     const missing = [];
@@ -901,8 +901,36 @@ function initContactForm() {
       return;
     }
 
-    const url = gcalUrl(f);
     const when = calState.selDate.split("-").reverse().join("/") + " às " + calState.selTime;
+    const submitBtn = document.getElementById("btn-submit");
+    submitBtn.disabled = true;
+    setFormMessage("Enviando...", true);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "4bc9ee30-5d69-451c-9f66-dc9464f0a712",
+          subject: "Novo lead — Aurora",
+          nome: f.nome,
+          empresa: f.empresa,
+          email: f.email,
+          telefone: f.telefone,
+          colaboradores: f.colaboradores,
+          mensagem: f.mensagem,
+          reuniao: when
+        })
+      });
+      const data = await res.json();
+      if (!data.success) console.error("Web3Forms recusou o envio:", data);
+    } catch (err) {
+      console.error("Falha ao enviar lead para o Web3Forms", err);
+    } finally {
+      submitBtn.disabled = false;
+    }
+
+    const url = gcalUrl(f);
     window.open(url, "_blank", "noopener");
     setFormMessage("Obrigado, " + f.nome.trim().split(" ")[0] + "! Sua reunião de " + when + " foi aberta no Google Agenda para confirmação.", true);
     form.reset();
